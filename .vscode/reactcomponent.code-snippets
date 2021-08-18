@@ -1,16 +1,23 @@
 {
-  "React Component": {
+  "React Component with props": {
     "scope": "javascriptreact, typescriptreact, javascript, typescript",
-    "prefix": ["reactcom", "reactcomponent"],
+    "prefix": ["reactcomprops", "rcp"],
     "body": [
       "import React from 'react'",
       "",
-      "import { $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}Props } from './types'",
-      "",
-      "export default function $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}({}: $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}Props) {",
-      "\treturn null$0",
+      "export interface $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}Props {",
+      "\t$0",
       "}",
-      ""
+      "",
+      "const $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}:React.FC<$1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}Props> = (props) => {",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\t",
+      "\t\t</div>",
+      "\t)",
+      "}",
+      "",
+      "export default $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}"
     ],
     "description": "Snippet for creating react component"
   }

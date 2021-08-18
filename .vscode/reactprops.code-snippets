@@ -1,7 +1,19 @@
 {
-  "React props": {
+  "React Component": {
     "scope": "javascriptreact, typescriptreact, javascript, typescript",
-    "prefix": ["reactprops", "reactprop"],
-    "body": ["export interface $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}Props {", "\t$0", "}", ""]
+    "prefix": ["reactcom", "rc"],
+    "body": [
+      "import React from 'react'",
+      "",
+      "const $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}:React.FC = () => {",
+      "\treturn (",
+      "\t\t<div>",
+      "\t\t\t",
+      "\t\t</div>",
+      "\t)",
+      "}",
+      "",
+      "export default $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}"
+    ]
   }
 }
