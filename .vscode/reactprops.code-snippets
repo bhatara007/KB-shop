@@ -1,0 +1,7 @@
+{
+  "React props": {
+    "scope": "javascriptreact, typescriptreact, javascript, typescript",
+    "prefix": ["reactprops", "reactprop"],
+    "body": ["export interface $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}Props {", "\t$0", "}", ""]
+  }
+}

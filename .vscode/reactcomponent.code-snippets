@@ -1,0 +1,17 @@
+{
+  "React Component": {
+    "scope": "javascriptreact, typescriptreact, javascript, typescript",
+    "prefix": ["reactcom", "reactcomponent"],
+    "body": [
+      "import React from 'react'",
+      "",
+      "import { $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}Props } from './types'",
+      "",
+      "export default function $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}({}: $1${TM_DIRECTORY/.*[\\\\|\\/]+(.*)/$1/}Props) {",
+      "\treturn null$0",
+      "}",
+      ""
+    ],
+    "description": "Snippet for creating react component"
+  }
+}
