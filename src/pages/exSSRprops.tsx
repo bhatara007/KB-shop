@@ -1,9 +1,9 @@
-import { NextPage } from 'next'
+import { GetServerSideProps, InferGetServerSidePropsType, NextPage } from 'next'
 import React from 'react'
 
 import Navbar from '../components/Navbar'
 
-export interface HomeProps {
+export interface SSRProps {
   data: {
     id: number
     title: string
@@ -14,7 +14,20 @@ export interface HomeProps {
   }[]
 }
 
-export const Home: NextPage<HomeProps> = ({ data }) => {
+export const getServerSideProps: GetServerSideProps<SSRProps> = async () => {
+  const res = await fetch('https://fakestoreapi.com/products')
+  const data = await res.json()
+
+  return {
+    props: {
+      data
+    }
+  }
+}
+
+export const SSR: NextPage<
+  InferGetServerSidePropsType<typeof getServerSideProps>
+> = ({ data }) => {
   return (
     <div>
       <Navbar />
@@ -36,10 +49,4 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
   )
 }
 
-export default Home
-
-Home.getInitialProps = async () => {
-  const res = await fetch('https://fakestoreapi.com/products')
-  const json = await res.json()
-  return { data: json }
-}
+export default SSR
