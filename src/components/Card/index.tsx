@@ -1,18 +1,49 @@
-import React from 'react'
+import { motion } from 'framer-motion'
+import { spring } from 'popmotion'
+import React, { useState } from 'react'
 
 import { IProduct } from '../../dto/product'
+import { variants } from './constants'
 
 export interface CardProps {
   item: IProduct
 }
 
 
+
 const Card:React.FC<CardProps> = ({item}) => {
+
+    const [cardHover, setCardHover] = useState(false)
+
     return (
-      <div className="flex flex-col items-center border-2 w-48 m-3 justify-self-center">
-        <img className='h-32 object-contain bg-cover' src={item.image} alt="this is image" />
-        <p className='text-lg text-center'>{item.title.slice(0,15)}</p>
-        <p className='text-sm'>{item.price}</p>
+      <div
+        className="flex flex-col items-center border-2 w-48 m-3 justify-self-center"
+        onMouseOver={() => setCardHover(true)}
+        onMouseLeave={() => setCardHover(false)}
+      >
+        <img
+          className="h-32 object-contain bg-cover"
+          src={item.image}
+          alt="this is image"
+        />
+        <p className="text-lg text-center">{item.title.slice(0, 15)}</p>
+        <p className="text-sm">{item.price}</p>
+        {cardHover && (
+              <motion.div className='absolute mt-14'
+                animate={{
+                    scale: [1, 1.5, 1, 1],
+                    transition: { 
+                        type:'spring',
+                        duration: 1,
+                        delay: 0.1
+                     }
+                }}
+            >
+            <button className="bg-gray-100 hover:bg-gray-500 border-black text-black font-bold py-2 px-4 border text-xs">
+              Add to Cart
+            </button>
+          </motion.div>
+        )}
       </div>
     )
 }
