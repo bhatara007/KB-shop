@@ -3,13 +3,16 @@ import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 import React from 'react'
 import Navbar from '../components/Navbar'
-import Banner from '../components/Banner/index,'
+import FeatureProduct from '../components/FeatureProduct'
 
 
-export default function Home({ allPostsData }) {
+export default function Home() {
   return (
     <div>
-      <Navbar/>
+      <div>
+        <Navbar/>
+      </div>
+      <FeatureProduct/>
     </div>
   )
 }
