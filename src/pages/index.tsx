@@ -2,6 +2,7 @@ import { NextPage } from 'next'
 import React from 'react'
 
 import Navbar from '../components/Navbar'
+import FeatureProduct from '../components/FeatureProduct'
 
 export interface HomeProps {
   data: {
