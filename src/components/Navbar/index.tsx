@@ -38,14 +38,14 @@ const Navbar = () => {
           <div className=''>
             <div
               className="h-96 w-100% absolute inset-0 bg-local text-center pt-36 text-4xl text-white
-            filter contrast-75 bg-center bg-no-repeat"
+            filter contrast-75 bg-center bg-no-repeat bg-cover"
               style={{
                 backgroundImage:
                   'url(https://preview.redd.it/ycse9u77vm461.jpg?width=960&crop=smart&auto=webp&s=bbb3b9d9de8b20dd590fb05adedef10c1d5c5873)',
                 zIndex: -2
               }}
             ></div>
-            <div className=" text-white bg-red-500 items-center text-center mx-auto flex flex-col"
+            <div className=" text-white items-center text-center flex flex-col mt-28 text-4xl"
             style={{zIndex: -1}}>
               <p> {bannerDesc[0].name}</p>
               <p> {bannerDesc[0].desc}</p>
