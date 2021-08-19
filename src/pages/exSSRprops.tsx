@@ -12,22 +12,34 @@ export interface SSRProps {
     category: string
     image: string
   }[]
+
+  data2: {
+    userid: number
+    id: number
+    title: string
+    complete: boolean
+  }[]
+
 }
 
 export const getServerSideProps: GetServerSideProps<SSRProps> = async () => {
   const res = await fetch('https://fakestoreapi.com/products')
   const data = await res.json()
 
+  const response = await fetch('https://jsonplaceholder.typicode.com/todos')
+  const data2 = await response.json()
+
   return {
     props: {
-      data
-    }
+      data, data2
+    }, 
   }
 }
 
+
 export const SSR: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
-> = ({ data }) => {
+> = ({ data, data2 }) => {
   return (
     <div>
       <Navbar />
@@ -44,6 +56,19 @@ export const SSR: NextPage<
               </li>
             )
           })}
+      </ul>
+      <hr/>
+      <ul>
+        { data2 &&
+          data2.map(item => {
+            return(
+              <li key={item.userid}>
+                <p>{item.id}</p>
+                <p>{item.title}</p>
+              </li>
+            )
+          })
+        }
       </ul>
     </div>
   )

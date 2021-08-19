@@ -1,5 +1,6 @@
 import { NextPage } from 'next'
 import React from 'react'
+import Card from '../components/Card'
 
 import Navbar from '../components/Navbar'
 
@@ -18,20 +19,16 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
   return (
     <div>
       <Navbar />
-      <ul>
-        {data &&
-          data.map(item => {
-            return (
-              <li key={item.id}>
-                <h1>{item.title}</h1>
-                <p>{item.price}</p>
-                <p>{item.description}</p>
-                <p>{item.category}</p>
-                <img src={item.image} alt="this is image" />
-              </li>
-            )
-          })}
-      </ul>
+      <div className="h-80"></div>
+      <div className="container mx-auto -mt-10">
+        <h1 className='text-center text-4xl mb-4'> Feature Product </h1>
+        <div className="flex flex-wrap justify-around">
+          {data &&
+            data.slice(0,8).map(item => {
+              return <Card key={item.id} item={item} />
+            })}
+        </div>
+      </div>
     </div>
   )
 }
@@ -39,7 +36,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 export default Home
 
 Home.getInitialProps = async () => {
-  const res = await fetch('https://fakestoreapi.com/products')
+  const res = await fetch('https://fakestoreapi.com/products/')
   const json = await res.json()
   return { data: json }
 }

@@ -1,4 +1,6 @@
 // import App from "next/app";
+import '../styles/global.css'
+
 import type { AppProps /*, AppContext */ } from 'next/app'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
