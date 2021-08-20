@@ -13,7 +13,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
   return (
     <>
       <motion.div
-        className="bg-transparent flex justify-around m-6 z-10 fixed top-0 w-full"
+        className="flex justify-around m-6 z-50 fixed top-0 w-full bg-transparent"
         variants={variants}
         initial="hidden"
         animate="visible"

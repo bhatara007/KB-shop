@@ -31,7 +31,6 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
             })}
         </div>
       </div>
-      <ImgSlide images={images} />
     </div>
   )
 }

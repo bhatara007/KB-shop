@@ -1,4 +1,6 @@
+import products from '@app/pages/products'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import React, { useState } from 'react'
 
 import { IProduct } from '../../dto/product'
@@ -30,9 +32,11 @@ const Card: React.FC<CardProps> = ({ item }) => {
           initial="hidden"
           animate="visible"
         >
-          <button className="bg-gray-100 hover:bg-gray-500 border-black text-black font-bold py-2 px-4 border text-xs">
-            Add to Cart
-          </button>
+          <Link href={'/products/' + item.id}>
+            <a className="bg-gray-100 hover:bg-gray-500 border-black text-black font-bold py-2 px-4 border text-xs">
+              VIEW
+            </a>
+          </Link>
         </motion.div>
       )}
     </div>
