@@ -28,7 +28,7 @@ const Banner: React.FC<BannerProps> = ({ bannerDesc }) => {
         <div key={index}>
           <motion.div
             className=" text-white absolute w-full justify-center text-center mx-auto flex flex-col h-96 text-2xl items-center
-          bg-black bg-opacity-20 z-0"
+          bg-black bg-opacity-20"
             variants={imgVariants}
             initial="hidden"
             animate="visible"
@@ -37,20 +37,12 @@ const Banner: React.FC<BannerProps> = ({ bannerDesc }) => {
               x: { type: 'spring', stiffness: 300, damping: 30 },
               opacity: { duration: 0.2 }
             }}
+            style={{ zIndex: -1 }}
           >
             <p className="text-5xl font-bold"> {bannerDesc[index].name}</p>
             <p> {bannerDesc[index].desc}</p>
             <button className="bg-white text-black mt-4 text-sm py-2 px-4">
               CHECK IT OUT NOW!
-            </button>
-            <button
-              ref={ref}
-              className="absolute bg-white text-black text-sm py-2 px-4 mt-80 right-0"
-              onClick={() => {
-                setIndex((index + 1) % bannerDesc.length)
-              }}
-            >
-              change banner
             </button>
           </motion.div>
 
@@ -72,6 +64,15 @@ const Banner: React.FC<BannerProps> = ({ bannerDesc }) => {
           ></motion.div>
         </div>
       </AnimatePresence>
+      <button
+        ref={ref}
+        className="absolute bg-white text-black text-sm py-2 px-4 mt-80 right-0 z-10"
+        onClick={() => {
+          setIndex((index + 1) % bannerDesc.length)
+        }}
+      >
+        change banner
+      </button>
       <div className="h-96"></div>
     </div>
   )
