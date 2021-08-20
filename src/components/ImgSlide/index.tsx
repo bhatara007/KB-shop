@@ -77,30 +77,40 @@ const ImgSlide: React.FC<ImgSlideProps> = ({
           />
         </AnimatePresence>
         <div
-          className="z-20 flex absolute justify-end items-end"
+          className="flex absolute justify-end items-end"
           style={{
             width: width,
             height: height
           }}
         >
           <button
-            className="bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border"
+            className="z-20 bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border"
             onClick={() => paginate(-1)}
           >
             <AiFillCaretLeft className="w-full" />
           </button>
           <button
-            className=" bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border"
+            className="z-20 bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border"
             onClick={() => paginate(1)}
           >
             <AiFillCaretRight className="w-full" />
           </button>
         </div>
       </div>
-      <div className="flex items-center justify-center space-x-3 p-1 flex-nowrap overflow-x-auto" style={{ width: width }}>
+      <div
+        className="flex items-center justify-center space-x-3 p-1 flex-nowrap overflow-x-auto"
+        style={{ width: width }}
+      >
         {images.map((image, index) => (
-          <img src={image} key={index} alt={image} className={`h-12 cursor-pointer ${index===imageIndex?"border-2 border-gray-300":""}`}
-          onClick = {() => setPage([index, index])}/>
+          <img
+            src={image}
+            key={index}
+            alt={image}
+            className={`h-12 cursor-pointer ${
+              index === imageIndex ? 'border-2 border-gray-300' : ''
+            }`}
+            onClick={() => setPage([index, index])}
+          />
         ))}
       </div>
     </div>
