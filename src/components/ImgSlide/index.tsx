@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { wrap } from 'popmotion'
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 
 import { variants } from './constants'
 
@@ -88,24 +88,6 @@ const ImgSlide: React.FC<ImgSlideProps> = ({
           {'‣'}
         </button>
       </div>
-      {/*
-      .next,
-      .prev {
-        top: calc(50% - 20px);
-        position: absolute;
-        background: white;
-        border-radius: 30px;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        user-select: none;
-        cursor: pointer;
-        font-weight: bold;
-        font-size: 18px;
-        z-index: 2;
-      }*/}
     </div>
   )
 }
