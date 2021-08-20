@@ -1,3 +1,4 @@
+import ImgSlide from '@app/components/ImgSlide'
 import { NextPage } from 'next'
 import React from 'react'
 
@@ -30,6 +31,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
             })}
         </div>
       </div>
+      <ImgSlide />
     </div>
   )
 }
