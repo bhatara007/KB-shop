@@ -20,7 +20,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
     <div>
       <Navbar banner />
       <div className="container mx-auto mt-8">
-        <h1 className='text-center text-4xl mb-4'> Feature Product </h1>
+        <h1 className='text-center text-3xl mb-4 font-bold'> Feature Product </h1>
         <div className="flex flex-wrap justify-center">
           {data &&
             data.slice(0, 8).map(item => {

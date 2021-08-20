@@ -1,5 +1,10 @@
 import { Variants } from "framer-motion"
 
+
+
+
+
+
 export const variants: Variants = {
   hidden: {
     y: 50,
