@@ -1,6 +1,5 @@
 // import App from "next/app";
 import '../styles/global.css'
-import 'react-carousel-minimal/dist/components/styles/index.css'
 
 import type { AppProps /*, AppContext */ } from 'next/app'
 

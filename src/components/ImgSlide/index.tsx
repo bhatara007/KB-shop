@@ -97,9 +97,10 @@ const ImgSlide: React.FC<ImgSlideProps> = ({
           </button>
         </div>
       </div>
-      <div className="bg-yellow-200 flex items-center justify-center space-x-3 p-1 flex-nowrap overflow-x-auto" style={{ width: width }}>
+      <div className="flex items-center justify-center space-x-3 p-1 flex-nowrap overflow-x-auto" style={{ width: width }}>
         {images.map((image, index) => (
-          <img src={image} key={index} className="h-10" />
+          <img src={image} key={index} alt={image} className={`h-12 cursor-pointer ${index===imageIndex?"border-2 border-gray-300":""}`}
+          onClick = {() => setPage([index, index])}/>
         ))}
       </div>
     </div>
