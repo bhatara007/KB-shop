@@ -21,7 +21,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
       <Navbar banner />
       <div className="container mx-auto mt-8">
         <h1 className='text-center text-4xl mb-4'> Feature Product </h1>
-        <div className="flex flex-wrap">
+        <div className="flex flex-wrap justify-center">
           {data &&
             data.slice(0, 8).map(item => {
               return <Card key={item.id} item={item} />

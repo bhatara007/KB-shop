@@ -8,7 +8,7 @@ export interface NavbarProps {
 const Navbar: React.FC<NavbarProps> = ({ banner }) => {
   const bannerDesc = [
     {
-      name: 'Gmk Botanical',
+      name: 'Gmk Tuzi',
       desc: 'Designed my Omnitype'
     }
   ]
@@ -17,11 +17,15 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
     <>
       {banner && (
         <div
-          className=" text-white justify-center text-center mx-auto flex flex-col h-96 text-2xl"
+          className=" text-white justify-center text-center mx-auto flex flex-col h-96 text-2xl items-center"
           style={{ zIndex: -1 }}
         >
-          <p> {bannerDesc[0].name}</p>
+          <p className="text-5xl font-bold"> {bannerDesc[0].name}</p>
           <p> {bannerDesc[0].desc}</p>
+          <button className="bg-white text-black mt-4 text-sm py-2 px-4">
+            {' '}
+            CHECK IT OUT NOW!
+          </button>
         </div>
       )}
       <div className="bg-transparent flex justify-around m-6 z-40 fixed top-0 w-full">
@@ -44,15 +48,21 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
         </div>
       </div>
       {banner && (
-        <div
-          className="h-96 w-100% absolute inset-0 bg-local text-center pt-36 text-4xl text-white
-            filter contrast-75 bg-center bg-no-repeat bg-cover"
+        <div>
+          <div
+            className="h-96 w-100% absolute inset-0 bg-local text-center pt-36 text-4xl text-white
+            filter bg-center bg-no-repeat bg-cover bg-opacity-75"
+            style={{
+              backgroundImage: 'url(https://i.imgur.com/mqN7rGs.jpg)',
+              zIndex: -3
+            }}
+          ></div>
+          <div className=' h-96 absolute z-50 container top-0 bg-black opacity-20'
           style={{
-            backgroundImage:
-              'url(https://preview.redd.it/ycse9u77vm461.jpg?width=960&crop=smart&auto=webp&s=bbb3b9d9de8b20dd590fb05adedef10c1d5c5873)',
             zIndex: -2
-          }}
-        ></div>
+          }}>
+          </div>
+        </div>
       )}
     </>
   )
