@@ -1,25 +1,25 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { wrap } from 'popmotion'
-import React, {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState
-} from 'react'
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
-import { images, variants } from './constants'
+import { variants } from './constants'
 
-// export interface ImgSlideProps {
-
-// }
+export interface ImgSlideProps {
+  images: string[]
+  width?: string | number
+  height?: string | number
+}
 
 const swipeConfidenceThreshold = 10000
 const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity
 }
 
-const ImgSlide: React.FC = () => {
+const ImgSlide: React.FC<ImgSlideProps> = ({
+  images,
+  width = 500,
+  height = 300
+}) => {
   const [[page, direction], setPage] = useState([0, 0])
 
   // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
@@ -32,16 +32,6 @@ const ImgSlide: React.FC = () => {
 
   const imageIndex = wrap(0, images.length, page)
   const imgSize = useRef(null)
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
-
-  useLayoutEffect(() => {
-    if (imgSize.current) {
-      setDimensions({
-        width: imgSize.current.offsetWidth,
-        height: imgSize.current.offsetHeight
-      })
-    }
-  }, [])
 
   return (
     <div className="w-full">
@@ -56,6 +46,10 @@ const ImgSlide: React.FC = () => {
           initial="enter"
           animate="center"
           exit="exit"
+          style={{
+            width: width,
+            height: height
+          }}
           transition={{
             x: { type: 'spring', stiffness: 300, damping: 30 },
             opacity: { duration: 0.2 }
@@ -77,8 +71,8 @@ const ImgSlide: React.FC = () => {
       <div
         className="relative z-20 flex justify-between items-end p-5"
         style={{
-          width: `${dimensions.width}px`,
-          height: `${dimensions.height}px`
+          width: width,
+          height: height
         }}
       >
         <button
