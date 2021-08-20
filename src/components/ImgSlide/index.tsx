@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { wrap } from 'popmotion'
 import React, { useRef, useState } from 'react'
+import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai'
 
 import { variants } from './constants'
 
@@ -34,59 +35,72 @@ const ImgSlide: React.FC<ImgSlideProps> = ({
   const imgSize = useRef(null)
 
   return (
-    <div className="w-full">
-      <AnimatePresence initial={false} custom={direction}>
-        <motion.img
-          key={page}
-          ref={imgSize}
-          className="absolute z-10 h-92"
-          src={images[imageIndex]}
-          custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          style={{
-            width: width,
-            height: height
-          }}
-          transition={{
-            x: { type: 'spring', stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 }
-          }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={1}
-          onDragEnd={(e, { offset, velocity }) => {
-            const swipe = swipePower(offset.x, velocity.x)
-
-            if (swipe < -swipeConfidenceThreshold) {
-              paginate(1)
-            } else if (swipe > swipeConfidenceThreshold) {
-              paginate(-1)
-            }
-          }}
-        />
-      </AnimatePresence>
+    <div>
       <div
-        className="relative z-20 flex justify-between items-end p-5"
+        className=""
         style={{
           width: width,
           height: height
         }}
       >
-        <button
-          className="bg-white h-10 w-10 text-lg rounded-full font-bold transform rotate-180"
-          onClick={() => paginate(-1)}
+        <AnimatePresence initial={false} custom={direction}>
+          <motion.img
+            key={page}
+            ref={imgSize}
+            className="absolute z-10 h-92"
+            src={images[imageIndex]}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            style={{
+              width: width,
+              height: height
+            }}
+            transition={{
+              x: { type: 'spring', stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 }
+            }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={1}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x)
+
+              if (swipe < -swipeConfidenceThreshold) {
+                paginate(1)
+              } else if (swipe > swipeConfidenceThreshold) {
+                paginate(-1)
+              }
+            }}
+          />
+        </AnimatePresence>
+        <div
+          className="z-20 flex absolute justify-end items-end"
+          style={{
+            width: width,
+            height: height
+          }}
         >
-          {'‣'}
-        </button>
-        <button
-          className="bg-white h-10 w-10 font-bold text-lg rounded-full"
-          onClick={() => paginate(1)}
-        >
-          {'‣'}
-        </button>
+          <button
+            className="bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border"
+            onClick={() => paginate(-1)}
+          >
+            <AiFillCaretLeft className="w-full" />
+          </button>
+          <button
+            className=" bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border"
+            onClick={() => paginate(1)}
+          >
+            <AiFillCaretRight className="w-full" />
+          </button>
+        </div>
+      </div>
+      <div className="bg-yellow-200 flex items-center justify-center space-x-3 p-1 flex-nowrap overflow-x-auto" style={{ width: width }}>
+        {images.map((image, index) => (
+          <img src={image} key={index} className="h-10" />
+        ))}
       </div>
     </div>
   )

@@ -1,11 +1,9 @@
 import ProductImage from '@app/components/showProduct'
 import React from 'react'
 
-export interface productsProps {
-    
-}
 
-const products:React.FC<productsProps> = (props) => {
+
+const products:React.FC = (props) => {
     return (
         <div>
             <ProductImage/>
