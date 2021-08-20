@@ -30,14 +30,9 @@ const Card:React.FC<CardProps> = ({item}) => {
         <p className="text-sm">{item.price}</p>
         {cardHover && (
               <motion.div className='absolute mt-14'
-                animate={{
-                    scale: [1, 1.5, 1, 1],
-                    transition: { 
-                        type:'spring',
-                        duration: 1,
-                        delay: 0.1
-                     }
-                }}
+              variants={variants}
+              initial='hidden'
+              animate='visible'
             >
             <button className="bg-gray-100 hover:bg-gray-500 border-black text-black font-bold py-2 px-4 border text-xs">
               Add to Cart
