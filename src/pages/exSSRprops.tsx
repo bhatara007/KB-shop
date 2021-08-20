@@ -19,7 +19,6 @@ export interface SSRProps {
     title: string
     complete: boolean
   }[]
-
 }
 
 export const getServerSideProps: GetServerSideProps<SSRProps> = async () => {
@@ -31,11 +30,11 @@ export const getServerSideProps: GetServerSideProps<SSRProps> = async () => {
 
   return {
     props: {
-      data, data2
-    }, 
+      data,
+      data2
+    }
   }
 }
-
 
 export const SSR: NextPage<
   InferGetServerSidePropsType<typeof getServerSideProps>
@@ -52,23 +51,21 @@ export const SSR: NextPage<
                 <p>{item.price}</p>
                 <p>{item.description}</p>
                 <p>{item.category}</p>
-                <img src={item.image} alt="this is image" />
               </li>
             )
           })}
       </ul>
-      <hr/>
+      <hr />
       <ul>
-        { data2 &&
+        {data2 &&
           data2.map(item => {
-            return(
+            return (
               <li key={item.userid}>
                 <p>{item.id}</p>
                 <p>{item.title}</p>
               </li>
             )
-          })
-        }
+          })}
       </ul>
     </div>
   )
