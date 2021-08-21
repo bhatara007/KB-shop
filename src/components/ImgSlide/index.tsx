@@ -35,9 +35,9 @@ const ImgSlide: React.FC<ImgSlideProps> = ({
   const imgSize = useRef(null)
 
   return (
-    <div>
+    <div className="">
       <div
-        className=""
+        className="relative"
         style={{
           width: width,
           height: height
@@ -47,7 +47,7 @@ const ImgSlide: React.FC<ImgSlideProps> = ({
           <motion.img
             key={page}
             ref={imgSize}
-            className="absolute z-10 h-92"
+            className="bg-cover absolute w-full"
             src={images[imageIndex]}
             custom={direction}
             variants={variants}
@@ -56,7 +56,7 @@ const ImgSlide: React.FC<ImgSlideProps> = ({
             exit="exit"
             style={{
               width: width,
-              height: height
+              height: height,
             }}
             transition={{
               x: { type: 'spring', stiffness: 300, damping: 30 },
@@ -77,7 +77,7 @@ const ImgSlide: React.FC<ImgSlideProps> = ({
           />
         </AnimatePresence>
         <div
-          className="z-20 flex absolute justify-end items-end"
+          className="flex absolute justify-end items-end z-20"
           style={{
             width: width,
             height: height
@@ -97,7 +97,7 @@ const ImgSlide: React.FC<ImgSlideProps> = ({
           </button>
         </div>
       </div>
-      <div className="flex items-center justify-center space-x-3 p-1 flex-nowrap overflow-x-auto" style={{ width: width }}>
+      <div className="flex items-center space-x-3 p-1 overflow-x-auto overscroll-x-auto" style={{ width: width }}>
         {images.map((image, index) => (
           <img src={image} key={index} alt={image} className={`h-16 cursor-pointer ${index===imageIndex?"border-2 border-gray-300":""}`}
           onClick = {() => setPage([index, 1])}/>

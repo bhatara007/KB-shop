@@ -11,8 +11,10 @@ export interface HomeProps {
 
 export const Home: NextPage<HomeProps> = ({ data }) => {
   return (
-    <div>
-      <Navbar banner />
+    <div className="">
+      <div className="top-0 h-96 w-full justify-center">
+        <Navbar banner />
+      </div>
       <div className="container mx-auto mt-8">
         <h1 className="text-center text-3xl mb-4 font-bold">
           {' '}

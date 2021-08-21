@@ -2,7 +2,7 @@
 export const variants = {
   enter: (direction: number) => {
     return {
-      x: direction > 0 ? 200 : -200,
+      x: direction > 0 ? 0 : 0,
       opacity: 0
     }
   },
@@ -14,7 +14,7 @@ export const variants = {
   exit: (direction: number) => {
     return {
       zIndex: 0,
-      x: direction < 0 ? 200 : -200,
+      x: direction < 0 ? 0 : 0,
       opacity: 0
     }
   }
