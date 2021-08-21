@@ -16,7 +16,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         <Navbar banner />
       </div>
       <div className="container mx-auto mt-8">
-        <h1 className="text-center text-3xl mb-4 font-bold">
+        <h1 className="text-center text-2xl md:text-3xl mb-4 font-bold">
           {' '}
           Feature Product{' '}
         </h1>

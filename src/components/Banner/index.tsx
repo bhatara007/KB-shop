@@ -39,8 +39,8 @@ const Banner: React.FC<BannerProps> = ({ bannerDesc }) => {
             }}
             style={{ zIndex: -1 }}
           >
-            <p className="text-5xl font-bold"> {bannerDesc[index].name}</p>
-            <p> {bannerDesc[index].desc}</p>
+            <p className=" text-4xl md:text-5xl font-bold"> {bannerDesc[index].name}</p>
+            <p className=" text-xl md:text-2xl"> {bannerDesc[index].desc}</p>
             <button className="bg-white text-black mt-4 text-sm py-2 px-4">
               CHECK IT OUT NOW!
             </button>
