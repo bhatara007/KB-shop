@@ -11,13 +11,13 @@ const MobileNav:React.FC = () => {
               <a className="text-black"> PRODUCT </a>
             </Link>
             <Link href="/">
-              <a className="text-black"> Groupbuy </a>
+              <a className="text-black"> GROUPBUY </a>
             </Link>
             <Link href="/">
-              <a className="text-black"> Upcoming </a>
+              <a className="text-black"> UPCOMING </a>
             </Link>
             <Link href="/">
-              <a className="text-black"> Help </a>
+              <a className="text-black"> HELP </a>
             </Link>
           </div>
           <hr />

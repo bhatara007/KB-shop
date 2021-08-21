@@ -2,6 +2,7 @@ import ImgSlide from "@app/components/ImgSlide";
 import Navbar from "@app/components/Navbar";
 import { IProduct } from "@app/dto/product";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
+import Link from "next/link";
 import React from "react";
 
 export interface StaticProps {
@@ -29,23 +30,35 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
     
 
     return (
-      <div className="mt-10">
-        <div className="flex container mx-auto">
+      <div className="mt-12 flex flex-col justify-center">
+
+        <div className="">
           <Navbar banner={false} />
         </div>
-        <div className="container mx-auto justify-center flex flex-col md:flex-row md:space-x-14 ">
+
+        <div className=" md:justify-center flex flex-col sm:flex-row md:space-x-14 md:container mx-auto items-center">
           <div className="flex">
             <ImgSlide images={images} />
           </div>
-          <div className=" bg-black container">
-            <h1 className="font-bold text-lg">Title</h1>
-            <p className="text-xs">
+          <div className="container md:w-60 text-black text-center p-3 space-y-4 mt-4">
+            <h1 className="font-bold text-lg tex">[Group Buy] GMK Bingsu</h1>
+            <p className='text-sm'> SGD$162.00 </p>
+            <button className="bg-transparent border-black text-black font-bold py-2 px-4 border text-xs w-56">
+              Add to Cart
+            </button>
+            <p className="text-xs" style={{
+              fontSize: '10px'
+            }}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
               molestiae labore repellendus cumque deleniti. Eos eius dolorem
               sunt repudiandae accusamus consequatur consequuntur, fuga nihil
               quis pariatur totam facilis voluptatum tempora.
             </p>
           </div>
+        </div>
+
+        <div className="container mx-auto text-black text-center space-y-2 bg-yellow-700 ">
+          <p className="text-xl font-bold">You may also Like</p>
         </div>
       </div>
     )

@@ -18,15 +18,15 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
     <>
       <div>
         <motion.div
-          className={`flex space-x-10 md:justify-around md:p-2 z-50 fixed top-0 w-full bg-white
-          ${mobileNav ? '' : 'bg-opacity-50'}
+          className={`flex space-x-10 md:p-2 z-50 fixed top-0 w-full bg-white
+          ${mobileNav ? '' : 'bg-opacity-40'}
           hover:bg-opacity-100 duration-500 text-black font-bold
-          items-center justify-around`}
+          items-center justify-center h-10`}
           variants={variants}
           initial="hidden"
           animate="visible"
         >
-          <div className="md:hidden left-0">
+          <div className="sm:hidden ml-2 absolute left-0">
             {!mobileNav && (
               <button
                 className="w-10 h-10 z-50"
@@ -47,7 +47,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
           <div className="bg-transparent bold">
             <p> LOGO </p>
           </div>
-          <div className="space-x-2 md:space-x-6 text-sm hidden md:visible">
+          <div className={`space-x-2 md:space-x-6 text-sm hidden sm:block`}>
             <Link href="/">
               <a className="text-black"> Product </a>
             </Link>
@@ -61,22 +61,19 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
               <a className="text-black"> Help </a>
             </Link>
           </div>
-          <div className="md:hidden">
-            <button className="w-10 h-10 z-50"></button>
-          </div>
         </motion.div>
         {banner && <Banner bannerDesc={bannerDesc} />}
       </div>
-      {/* {mobileNav && ( */}
+      {mobileNav && ( 
       <motion.div
         className="absolute z-30 top-0 h-full bg-white p-4"
         variants={mobileVariants}
-        initial={mobileNav ? 'hidden' : 'animate'}
+        initial={false}
         animate={!mobileNav ? 'hidden' : 'animate'}
       >
         <MobileNav />
-      </motion.div>
-      {/* )} */}
+      </motion.div> 
+     )}
     </>
   )
 }

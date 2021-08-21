@@ -18,8 +18,8 @@ const swipePower = (offset: number, velocity: number) => {
 
 const ImgSlide: React.FC<ImgSlideProps> = ({
   images,
-  width = 500,
-  height = 300
+  width = 350,
+  height = 200
 }) => {
   const [[page, direction], setPage] = useState([0, 0])
 
