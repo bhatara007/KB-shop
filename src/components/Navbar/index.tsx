@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import React, { useState } from 'react'
-import { AiOutlineClose,AiOutlineMenu } from 'react-icons/ai'
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 
 import Banner from '../Banner'
 import MobileNav from '../MobileNav'
@@ -11,22 +11,21 @@ export interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ banner }) => {
-
   const [mobileNav, setMobileNav] = useState(false)
 
   return (
     <>
       <div>
         <motion.div
-          className={`flex space-x-10 md:p-2 z-50 fixed top-0 w-full bg-white
+          className={`flex sm:space-x-10 md:p-2 z-50 fixed top-0 w-full bg-white
           ${mobileNav ? '' : 'bg-opacity-40'}
           hover:bg-opacity-100 duration-500 text-black font-bold
-          items-center justify-center h-10`}
+          items-center justify-around h-10`}
           variants={variants}
           initial="hidden"
           animate="visible"
         >
-          <div className="sm:hidden ml-2 absolute left-0">
+          <div className="sm:hidden ml-2 absolute text-2xl left-0">
             {!mobileNav && (
               <button
                 className="w-10 h-10 z-50"
@@ -44,9 +43,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
               </button>
             )}
           </div>
-          <div className="bg-transparent bold">
-            <p> LOGO </p>
-          </div>
+          <div className="bg-transparent text-lg bold">LOGO</div>
           <div className={`space-x-2 md:space-x-6 text-sm hidden sm:block`}>
             <Link href="/">
               <a className="text-black"> Product </a>
@@ -64,16 +61,16 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
         </motion.div>
         {banner && <Banner bannerDesc={bannerDesc} />}
       </div>
-      {mobileNav && ( 
-      <motion.div
-        className="absolute z-30 top-0 h-full bg-white p-4"
-        variants={mobileVariants}
-        initial={false}
-        animate={!mobileNav ? 'hidden' : 'animate'}
-      >
-        <MobileNav />
-      </motion.div> 
-     )}
+      {mobileNav && (
+        <motion.div
+          className="absolute z-30 top-0 h-full bg-white p-4"
+          variants={mobileVariants}
+          initial={false}
+          animate={!mobileNav ? 'hidden' : 'animate'}
+        >
+          <MobileNav />
+        </motion.div>
+      )}
     </>
   )
 }
