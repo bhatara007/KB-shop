@@ -27,6 +27,8 @@ export const getStaticProps: GetStaticProps<StaticProps> = async () => {
 
 export const Static: NextPage<InferGetStaticPropsType<typeof getStaticProps>> =
   ({ data }) => {
+
+
     return (
       <div>
         <Navbar />
