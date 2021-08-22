@@ -14,8 +14,8 @@ export const variants: Variants = {
 
 export const mobileVariants: Variants = {
   hidden: {
-    opacity: 0,
-    x:-60,
+    opacity: 0.6,
+    x:-360,
     transition: { type: 'tween', duration: 0.5 }
   },
 
@@ -28,8 +28,8 @@ export const mobileVariants: Variants = {
 
 export const cartVariants: Variants = {
   hidden: {
-    opacity: 0,
-    x: -160,
+    opacity: 0.6,
+    x: 360,
     transition: { type: 'tween', duration: 0.5 }
   },
 

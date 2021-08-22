@@ -83,7 +83,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
         {banner && <Banner bannerDesc={bannerDesc} />}
       </div>
       <motion.div
-        className="absolute z-30 top-0 h-full bg-black p-4"
+        className="fixed z-30 top-0 h-full bg-black p-4"
         variants={mobileVariants}
         initial={false}
         animate={!mobileNav ? 'hidden' : 'animate'}
@@ -92,7 +92,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
       </motion.div>
 
       <motion.div
-        className=" absolute top-0 h-full bg-black p-4 right-0 z-30"
+        className=" top-0 bg-black p-4 right-0 z-30 h-full fixed"
         variants={cartVariants}
         initial={false}
         animate={!cartSilder ? 'hidden' : 'animate'}
