@@ -1,10 +1,7 @@
 import ImgSlide from "@app/components/ImgSlide";
 import Navbar from "@app/components/Navbar";
 import { CartContext } from "@app/context";
-import { IProduct } from "@app/dto/product";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
-import Link from "next/link";
-import { totalmem } from "os";
 import React, { useContext } from "react";
 
 
@@ -36,7 +33,6 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
     
     const {products, setProducts} = useContext(CartContext) 
 
-    console.log(data)
     
     // const images = [data.images]
 
