@@ -1,7 +1,7 @@
 import ImgSlide from '@app/components/ImgSlide'
 import { IProduct } from '@app/dto/product'
 import { NextPage } from 'next'
-import React from 'react'
+import React, { useState } from 'react'
 
 import Card from '../components/Card'
 import Navbar from '../components/Navbar'
@@ -10,8 +10,10 @@ export interface HomeProps {
 }
 
 export const Home: NextPage<HomeProps> = ({ data }) => {
+
+
   return (
-    <div className="">
+    <>
       <div className="top-0 h-96 w-full justify-center">
         <Navbar banner />
       </div>
@@ -27,7 +29,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
             })}
         </div>
       </div>
-    </div>
+    </>
   )
 }
 

@@ -26,6 +26,20 @@ export const mobileVariants: Variants = {
   }
 }
 
+export const cartVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 60,
+    transition: { type: 'tween', duration: 0.5 }
+  },
+
+  animate: {
+    x: 0,
+    opacity: 1,
+    transition: { type: 'tween', duration: 0.5 }
+  }
+}
+
 export const bannerDesc = [
   {
     name: 'GMK Botanical',

@@ -1,12 +1,20 @@
 // import App from "next/app";
 import '../styles/global.css'
 
+import { CartContextWrapper } from '@app/context'
 import type { AppProps /*, AppContext */ } from 'next/app'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+
+  return (
+    <CartContextWrapper>
+      <Component {...pageProps} />
+    </CartContextWrapper>
+  )
 }
+
+
 
 // Only uncomment this method if you have blocking data requirements for
 // every single page in your application. This disables the ability to

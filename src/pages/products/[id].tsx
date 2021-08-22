@@ -1,9 +1,12 @@
 import ImgSlide from "@app/components/ImgSlide";
 import Navbar from "@app/components/Navbar";
+import { CartContext } from "@app/context";
 import { IProduct } from "@app/dto/product";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Link from "next/link";
-import React from "react";
+import React, { useContext } from "react";
+
+
 
 export interface StaticProps {
   data: {
@@ -16,34 +19,46 @@ export interface StaticProps {
   }
 }
 
+
 export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> =
   ({ data }) => {
-    const images = [
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Valkyrie-Bowl-Deskmat_720x.jpg?v=1625671189',
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Tengu_720x.jpg?v=1625671189',
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/GMK-Bingsu-R2_720x.jpg?v=1625671190',
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Valkyrie-Mono_720x.jpg?v=1625671189',
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/00-GMK-Bingsu-R2-Basev4_590x.jpg?v=1625671190',
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/02-GMK-Bingsu-R2-Spacebar.v2_720x.jpg?v=1625671190',
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/04-GMK-Bingsu-R2-Novelties_720x.jpg?v=1625671190'
-    ]
+
+    // const images = [
+    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Valkyrie-Bowl-Deskmat_720x.jpg?v=1625671189',
+    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Tengu_720x.jpg?v=1625671189',
+    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/GMK-Bingsu-R2_720x.jpg?v=1625671190',
+    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Valkyrie-Mono_720x.jpg?v=1625671189',
+    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/00-GMK-Bingsu-R2-Basev4_590x.jpg?v=1625671190',
+    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/02-GMK-Bingsu-R2-Spacebar.v2_720x.jpg?v=1625671190',
+    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/04-GMK-Bingsu-R2-Novelties_720x.jpg?v=1625671190'
+    // ]
     
+    const {products, setProducts} = useContext(CartContext) 
+
+    const images = [data.image]
 
     return (
       <div className="mt-12 flex flex-col justify-center">
-
         <div className="">
           <Navbar banner={false} />
         </div>
-
         <div className=" md:justify-center flex flex-col sm:flex-row md:space-x-14 md:container mx-auto items-center">
           <div className="flex">
             <ImgSlide images={images} />
           </div>
           <div className="container md:w-60 text-black text-center p-3 space-y-4 mt-4">
-            <h1 className="font-bold text-lg tex">[Group Buy] GMK Bingsu</h1>
-            <p className='text-sm'> SGD$162.00 </p>
-            <button className="bg-transparent border-black text-black font-bold py-2 px-4 border text-xs w-56">
+            <h1 className="font-bold text-lg tex">{data.title.slice(0,13)}</h1>
+            <p className='text-sm'> {data.price} </p>
+            <button className="bg-transparent border-black text-black font-bold py-2 px-4 border text-xs w-56"
+            onClick = {() => setProducts([...products,
+            {
+              id: data.id,
+              title: data.title,
+              price: data.price,
+              description: data.description,
+              category: data.category,
+              image: data.image
+            }])}>
               Add to Cart
             </button>
             <p className="text-xs" style={{
@@ -54,12 +69,22 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
               sunt repudiandae accusamus consequatur consequuntur, fuga nihil
               quis pariatur totam facilis voluptatum tempora.
             </p>
+          <div className='w-28 h-5 bg-black text-white'>
+            <button className='w-28 h-5' onClick={ () => setProducts([])}> clear cart </button>
+          </div>
+
           </div>
         </div>
 
-        <div className="container mx-auto text-black text-center space-y-2 bg-yellow-700 ">
+        <div className="container mx-auto text-black text-center space-y-2 ">
           <p className="text-xl font-bold">You may also Like</p>
         </div>
+
+        {/* <div className='bg-yellow-200'>
+          { products.map( item => {
+            return <li key={item.id}> {item.title} </li>
+          })}
+        </div> */}
       </div>
     )
   } 
