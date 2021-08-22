@@ -92,7 +92,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
       </motion.div>
 
       <motion.div
-        className="z-30 absolute top-0 h-full bg-black p-4 right-0"
+        className=" absolute top-0 h-full bg-black p-4 right-0 z-30"
         variants={cartVariants}
         initial={false}
         animate={!cartSilder ? 'hidden' : 'animate'}

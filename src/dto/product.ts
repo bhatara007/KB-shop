@@ -4,5 +4,13 @@ export interface IProduct {
   price: number
   description: string
   category: string
-  image: string
+  images: string[]
+}
+
+export interface ICartProduct {
+  id: number
+  title: string
+  price: number
+  image: string,
+  quantity: number
 }

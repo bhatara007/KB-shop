@@ -29,7 +29,7 @@ export const mobileVariants: Variants = {
 export const cartVariants: Variants = {
   hidden: {
     opacity: 0,
-    x: 60,
+    x: -160,
     transition: { type: 'tween', duration: 0.5 }
   },
 

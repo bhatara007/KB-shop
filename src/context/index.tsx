@@ -1,15 +1,15 @@
 import { createContext, useState } from 'react'
 
-import { IProduct } from '../dto/product'
+import { ICartProduct } from '../dto/product'
 
 interface CartProductType {
-  products: IProduct[]
-  setProducts: (products: IProduct[]) => void
+  products: ICartProduct[]
+  setProducts: (products: ICartProduct[]) => void
 }
 
 export const CartContextWrapper = ({ children }) => {
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [products, setProducts] = useState<IProduct[]>([])
+  const [products, setProducts] = useState<ICartProduct[]>([])
 
   return (
     <CartContext.Provider value={{products, setProducts}}>

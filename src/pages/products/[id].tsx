@@ -4,6 +4,7 @@ import { CartContext } from "@app/context";
 import { IProduct } from "@app/dto/product";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import Link from "next/link";
+import { totalmem } from "os";
 import React, { useContext } from "react";
 
 
@@ -15,7 +16,7 @@ export interface StaticProps {
     price: number
     description: string
     category: string
-    image: string
+    images: string
   }
 }
 
@@ -23,19 +24,21 @@ export interface StaticProps {
 export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> =
   ({ data }) => {
 
-    // const images = [
-    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Valkyrie-Bowl-Deskmat_720x.jpg?v=1625671189',
-    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Tengu_720x.jpg?v=1625671189',
-    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/GMK-Bingsu-R2_720x.jpg?v=1625671190',
-    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Valkyrie-Mono_720x.jpg?v=1625671189',
-    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/00-GMK-Bingsu-R2-Basev4_590x.jpg?v=1625671190',
-    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/02-GMK-Bingsu-R2-Spacebar.v2_720x.jpg?v=1625671190',
-    //   'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/04-GMK-Bingsu-R2-Novelties_720x.jpg?v=1625671190'
-    // ]
+    const images = [
+      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Valkyrie-Bowl-Deskmat_720x.jpg?v=1625671189',
+      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Tengu_720x.jpg?v=1625671189',
+      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/GMK-Bingsu-R2_720x.jpg?v=1625671190',
+      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Valkyrie-Mono_720x.jpg?v=1625671189',
+      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/00-GMK-Bingsu-R2-Basev4_590x.jpg?v=1625671190',
+      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/02-GMK-Bingsu-R2-Spacebar.v2_720x.jpg?v=1625671190',
+      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/04-GMK-Bingsu-R2-Novelties_720x.jpg?v=1625671190'
+    ]
     
     const {products, setProducts} = useContext(CartContext) 
 
-    const images = [data.image]
+    console.log(data)
+    
+    // const images = [data.images]
 
     return (
       <div className="mt-12 flex flex-col justify-center">
@@ -55,9 +58,8 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
               id: data.id,
               title: data.title,
               price: data.price,
-              description: data.description,
-              category: data.category,
-              image: data.image
+              image: data.images[0],
+              quantity: 1,
             }])}>
               Add to Cart
             </button>

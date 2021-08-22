@@ -6,7 +6,6 @@ const ProductImage = () => {
 
   return (
     <div className="">
-        <MobileNav/>
     </div>
   )
 }
