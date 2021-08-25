@@ -56,7 +56,7 @@ const ImgSlide: React.FC<ImgSlideProps> = ({
             exit="exit"
             style={{
               width: width,
-              height: height,
+              height: height
             }}
             transition={{
               x: { type: 'spring', stiffness: 300, damping: 30 },
@@ -77,32 +77,42 @@ const ImgSlide: React.FC<ImgSlideProps> = ({
           />
         </AnimatePresence>
         <div
-          className="flex absolute justify-end items-end z-20"
+          className="flex absolute justify-end items-end"
           style={{
             width: width,
             height: height
           }}
         >
           <button
-            className="bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border"
+            className="bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border z-40"
             onClick={() => paginate(-1)}
           >
             <AiFillCaretLeft className="w-full" />
           </button>
           <button
-            className=" bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border"
+            className=" bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border z-40"
             onClick={() => paginate(1)}
           >
             <AiFillCaretRight className="w-full" />
           </button>
         </div>
       </div>
-      <div className="flex items-center space-x-3 p-1 overflow-x-auto overscroll-x-auto" style={{ width: width }}>
+      <motion.div
+        className="flex items-center space-x-3 p-1 overflow-x-auto overscroll-x-auto"
+        style={{ width: width }}
+      >
         {images.map((image, index) => (
-          <img src={image} key={index} alt={image} className={`h-16 cursor-pointer ${index===imageIndex?"border-2 border-gray-300":""}`}
-          onClick = {() => setPage([index, 1])}/>
+          <img
+            src={image}
+            key={index}
+            alt={image}
+            className={`h-16 cursor-pointer ${
+              index === imageIndex ? 'border-2 border-gray-300' : ''
+            }`}
+            onClick={() => setPage([index, 1])}
+          />
         ))}
-      </div>
+      </motion.div>
     </div>
   )
 }

@@ -5,12 +5,13 @@ export interface IProduct {
   description: string
   category: string
   images: string[]
+  image?: string
 }
 
 export interface ICartProduct {
   id: number
   title: string
   price: number
-  image: string,
+  image: string
   quantity: number
 }

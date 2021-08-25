@@ -37,7 +37,10 @@ const CartSlider = () => {
   ])
 
   const getTotal = useMemo(() => {
-    return productss.reduce((acc, item) => acc += item.quantity * item.price, 0)
+    return productss.reduce(
+      (acc, item) => (acc += item.quantity * item.price),
+      0
+    )
   }, [productss])
 
   const updateProduct = (id, action) => {

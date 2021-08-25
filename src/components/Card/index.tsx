@@ -20,7 +20,7 @@ const Card: React.FC<CardProps> = ({ item }) => {
     >
       <img
         className="h-32 object-contain bg-cover"
-        src={item.image}
+        src={item.image as string}
         alt="this is image"
       />
       <p className="text-lg text-center">{item.title.slice(0, 15)}</p>
