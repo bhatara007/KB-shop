@@ -1,11 +1,11 @@
 
-import CartSlider from '@app/components/CartSlider'
+import CreateProductForm from '@app/components/CreateProductForm'
 import React from 'react'
 
 const test:React.FC = () => {
     return (
         <div>
-            <CartSlider/>
+            <CreateProductForm/>
         </div>
     )
 }
