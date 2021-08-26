@@ -84,13 +84,13 @@ const ImgSlide: React.FC<ImgSlideProps> = ({
           }}
         >
           <button
-            className="bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border z-40"
+            className="bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border z-20"
             onClick={() => paginate(-1)}
           >
             <AiFillCaretLeft className="w-full" />
           </button>
           <button
-            className=" bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border z-40"
+            className=" bg-white h-10 w-10 text-lg font-bold hover:bg-black hover:text-white rounded-none border z-20"
             onClick={() => paginate(1)}
           >
             <AiFillCaretRight className="w-full" />

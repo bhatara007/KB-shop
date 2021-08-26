@@ -11,6 +11,7 @@ interface formDatatype {
   category: string
   desc: string
   available: boolean
+  price: number
   quantity: number
   images: string[]
 }
@@ -22,8 +23,9 @@ const CreateProductForm:React.FC = () => {
     category: "",
     desc: "",
     available: true,
+    price: 0,
     quantity: 0,
-    images: [""]
+    images: ["", ""]
   })
 
   const addImg = () => {
@@ -62,6 +64,7 @@ const CreateProductForm:React.FC = () => {
       category: '',
       desc: '',
       available: true,
+      price: 0,
       quantity: 0,
       images: ['']
     })
@@ -88,7 +91,7 @@ const CreateProductForm:React.FC = () => {
     <>
       <Navbar banner={false} />
       <div className=" justify-center mt-14 flex flex-col items-center">
-        <h1 className='text-4xl font-bold mb-7'> Add Product </h1>
+        <h1 className="text-4xl font-bold mb-7"> Add Product </h1>
         <form
           className="flex flex-col justify-center space-y-5"
           onSubmit={submitHandle}
@@ -100,6 +103,7 @@ const CreateProductForm:React.FC = () => {
               type="text"
               name="title"
               value={formData.title}
+              required={true}
               onChange={onInputChange}
             />
           </div>
@@ -120,6 +124,7 @@ const CreateProductForm:React.FC = () => {
               className="border"
               name="category"
               value={formData.category}
+              required={true}
               onChange={onInputChange}
             >
               <option> Keyboard </option>
@@ -129,12 +134,24 @@ const CreateProductForm:React.FC = () => {
             </select>
           </div>
           <div>
+            <label> Price </label>
+            <input
+              className="border"
+              type="number"
+              name="price"
+              value={formData.price}
+              required={true}
+              onChange={onInputChange}
+            />
+          </div>
+          <div>
             <label> Quatity </label>
             <input
               className="border"
               type="number"
               name="quantity"
               value={formData.quantity}
+              required={true}
               onChange={onInputChange}
             />
           </div>
@@ -144,14 +161,15 @@ const CreateProductForm:React.FC = () => {
               name="available"
               checked={formData.available}
               onChange={onCheckBoxChange}
+              required={true}
             />
             <label> available </label>
           </div>
-          <div >
+          <div>
             <label> Img </label>
             <button
               className="pl-6"
-              type='button'
+              type="button"
               onClick={() => {
                 addImg()
               }}
@@ -168,6 +186,7 @@ const CreateProductForm:React.FC = () => {
                     className="border"
                     type="text"
                     name="images"
+                    required={true}
                     value={formData.images[index]}
                     onChange={e => onImgChange(e, index)}
                   />

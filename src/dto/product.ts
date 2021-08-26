@@ -1,17 +1,18 @@
 export interface IProduct {
-  id: number
+  _id: number
   title: string
-  price: number
+  price?: number
   description: string
+  available: true
+  quantity: number
   category: string
   images: string[]
-  image?: string
 }
 
 export interface ICartProduct {
   id: number
   title: string
   price: number
-  image: string
+  images: string[]
   quantity: number
 }

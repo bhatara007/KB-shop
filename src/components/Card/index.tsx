@@ -12,19 +12,24 @@ export interface CardProps {
 const Card: React.FC<CardProps> = ({ item }) => {
   const [cardHover, setCardHover] = useState(false)
 
+  console.log(item._id);
+  
+
   return (
     <div
-      className="flex flex-col items-center border-2 w-48 m-3 justify-self-center"
+      className="flex flex-col items-center border-2 w-48 m-3 justify-center"
       onMouseOver={() => setCardHover(true)}
       onMouseLeave={() => setCardHover(false)}
     >
       <img
-        className="h-32 object-contain bg-cover"
-        src={item.image as string}
+        className="object-contain bg-cover"
+        src={item.images[0]}
         alt="this is image"
       />
-      <p className="text-lg text-center">{item.title.slice(0, 15)}</p>
-      <p className="text-sm">{item.price}</p>
+      <div className='flex flex-col item-center justify-center text-center'>
+        <p className="text-lg text-center">{item.title.slice(0, 19)}</p>
+        <p className="text-sm">USD {item.price}$</p>
+      </div>
       {cardHover && (
         <motion.div
           className="absolute mt-14"
@@ -32,7 +37,7 @@ const Card: React.FC<CardProps> = ({ item }) => {
           initial="hidden"
           animate="visible"
         >
-          <Link href={'/products/' + item.id}>
+          <Link href={'/products/' + item._id}>
             <a className="bg-gray-100 hover:bg-gray-500 border-black text-black font-bold py-2 px-4 border text-xs">
               VIEW
             </a>

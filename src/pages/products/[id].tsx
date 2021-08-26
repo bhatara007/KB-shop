@@ -1,6 +1,7 @@
 import ImgSlide from "@app/components/ImgSlide";
 import Navbar from "@app/components/Navbar";
 import { CartContext } from "@app/context";
+import { ICartProduct } from "@app/dto/product";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import React, { useContext } from "react";
 
@@ -8,31 +9,38 @@ import React, { useContext } from "react";
 
 export interface StaticProps {
   data: {
-    id: number
+    _id: number
     title: string
-    price: number
-    description: string
+    price?: number
+    desc: string
+    available: true
+    quantity: number,
     category: string
-    images: string
+    images: string[]
   }
 }
 
 
 export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> =
   ({ data }) => {
-
-    const images = [
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Valkyrie-Bowl-Deskmat_720x.jpg?v=1625671189',
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Tengu_720x.jpg?v=1625671189',
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/GMK-Bingsu-R2_720x.jpg?v=1625671190',
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/Bingsu-Valkyrie-Mono_720x.jpg?v=1625671189',
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/00-GMK-Bingsu-R2-Basev4_590x.jpg?v=1625671190',
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/02-GMK-Bingsu-R2-Spacebar.v2_720x.jpg?v=1625671190',
-      'https://cdn.shopify.com/s/files/1/0068/3599/4706/products/04-GMK-Bingsu-R2-Novelties_720x.jpg?v=1625671190'
-    ]
     
     const {products, setProducts} = useContext(CartContext) 
 
+    const addToCart = (item: ICartProduct) => {
+      console.log(item)
+      const updatedProducts = products.map(itemCart => {
+
+        if(item.title === itemCart.title){
+          return itemCart.quantity + 1 
+        }
+        else{
+          return item
+        }
+      })
+      console.log(updatedProducts);
+      
+      setProducts(updatedProducts)
+    }
     
     // const images = [data.images]
 
@@ -43,18 +51,18 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
         </div>
         <div className=" md:justify-center flex flex-col sm:flex-row md:space-x-14 md:container mx-auto items-center">
           <div className="flex">
-            <ImgSlide images={images} />
+            <ImgSlide images={data.images} />
           </div>
           <div className="container md:w-60 text-black text-center p-3 space-y-4 mt-4">
-            <h1 className="font-bold text-lg tex">{data.title.slice(0,13)}</h1>
-            <p className='text-sm'> {data.price} </p>
+            <h1 className="font-bold text-lg tex">{data.title.slice(0,18)}</h1>
+            <p className='text-sm'>USD {data.price}$ </p>
             <button className="bg-transparent border-black text-black font-bold py-2 px-4 border text-xs w-56"
-            onClick = {() => setProducts([...products,
+            onClick = {() => setProducts([ ...products,
             {
-              id: data.id,
+              id: data._id,
               title: data.title,
               price: data.price,
-              image: data.images[0],
+              images: data.images,
               quantity: 1,
             }])}>
               Add to Cart
@@ -62,14 +70,8 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
             <p className="text-xs" style={{
               fontSize: '10px'
             }}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam
-              molestiae labore repellendus cumque deleniti. Eos eius dolorem
-              sunt repudiandae accusamus consequatur consequuntur, fuga nihil
-              quis pariatur totam facilis voluptatum tempora.
+              {data.desc}
             </p>
-          <div className='w-28 h-5 bg-black text-white'>
-            <button className='w-28 h-5' onClick={ () => setProducts([])}> clear cart </button>
-          </div>
 
           </div>
         </div>
@@ -89,7 +91,7 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
 
   export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
     const id = context.params.id
-    const res = await fetch('https://fakestoreapi.com/products/' + id)
+    const res = await fetch('http://localhost:4000/products/' + id)
     const data = await res.json()
 
     return {
@@ -100,12 +102,12 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
   }
 
   export const getStaticPaths = async () => {
-    const res = await fetch('https://fakestoreapi.com/products')
+    const res = await fetch('http://localhost:4000/products/')
     const data = await res.json()
 
     const paths = data.map(product => {
       return {
-        params: { id: product.id.toString() }
+        params: { id: product._id }
       }
     })
 

@@ -5,71 +5,77 @@ import React, { useContext, useMemo, useState } from 'react'
 const CartSlider = () => {
   const { products, setProducts } = useContext(CartContext)
 
-  const [productss, setProductss] = useState([
-    {
-      id: '1',
-      title: 'GMK Olive',
-      price: 100,
-      images: [
-        'https://preview.redd.it/wf9kd6zl2mv41.jpg?width=960&crop=smart&auto=webp&s=b7f41edf2d4ca98d524bdab43654f6b1fbcbfe8e'
-      ],
-      quantity: 1,
-      totalprice: 100
-    },
-    {
-      id: '3',
-      title: 'GMK ICE',
-      price: 13400,
-      images: ['https://cf.shopee.co.th/file/e117d87a9a52e940c4b8d188492473c9'],
-      quantity: 1,
-      totalprice: 13400
-    },
-    {
-      id: '2',
-      title: 'GMK YO',
-      price: 10340,
-      images: [
-        'https://preview.redd.it/9g497ysk46641.jpg?width=960&crop=smart&auto=webp&s=1707c6e910499817c1716091a277abf8a225672c'
-      ],
-      quantity: 1,
-      totalprice: 10340
-    }
-  ])
+  // const [productss, setProductss] = useState([
+  //   {
+  //     id: '1',
+  //     title: 'GMK Olive',
+  //     price: 100,
+  //     images: [
+  //       'https://preview.redd.it/wf9kd6zl2mv41.jpg?width=960&crop=smart&auto=webp&s=b7f41edf2d4ca98d524bdab43654f6b1fbcbfe8e'
+  //     ],
+  //     quantity: 1,
+  //     totalprice: 100
+  //   },
+  //   {
+  //     id: '3',
+  //     title: 'GMK ICE',
+  //     price: 13400,
+  //     images: ['https://cf.shopee.co.th/file/e117d87a9a52e940c4b8d188492473c9'],
+  //     quantity: 1,
+  //     totalprice: 13400
+  //   },
+  //   {
+  //     id: '2',
+  //     title: 'GMK YO',
+  //     price: 10340,
+  //     images: [
+  //       'https://preview.redd.it/9g497ysk46641.jpg?width=960&crop=smart&auto=webp&s=1707c6e910499817c1716091a277abf8a225672c'
+  //     ],
+  //     quantity: 1,
+  //     totalprice: 10340
+  //   }
+  // ])
 
   const getTotal = useMemo(() => {
-    return productss.reduce(
+    return products.reduce(
       (acc, item) => (acc += item.quantity * item.price),
       0
     )
-  }, [productss])
+  }, [products])
 
   const updateProduct = (id, action) => {
-    const updatedProducts = productss.map(item => {
+    const updatedProducts = products.map(item => {
       if (item.id === id && action === 'increment') {
         return { ...item, quantity: item.quantity + 1 }
-      } else if (item.id === id && action === 'decrement') {
+      } else if (item.id === id && action === 'decrement' && item.quantity > 1) {
         return { ...item, quantity: item.quantity - 1 }
       } else {
         return { ...item }
       }
     })
-    setProductss(updatedProducts)
+    setProducts(updatedProducts)
+  }
+
+  const removeProduct = (id) => {
+    const removedProduct = products.filter((item) => item.id !== id)
+    setProducts(removedProduct)
+    
   }
 
   return (
-    <div className=" bg-black flex flex-row justify-between w-auto">
+    <div className=" bg-black flex flex-row justify-between w-auto z-50">
       <div className="mt-20 text-lg flex flex-col space-y-4 pl-5 text-white">
         <h1 className="text-3xl">CART</h1>
         <div className="flex flex-col space-y-4">
           {}
           <ul>
-            {productss &&
-              productss.map(item => {
+            {products &&
+              products.map(item => {
                 return (
                   <div className="flex flex-col space-y-3 my-5" key={item.id}>
                     <hr />
                     <div className="flex flex-row space-x-3">
-                      <img className="h-20 w-20" src={item.images[0]} alt="" />
+                      <img className="h-20 w-24" src={item.images[0]} alt="" />
                       <div>
                         <h2>{item.title}</h2>
                         <div className="">
@@ -96,11 +102,17 @@ const CartSlider = () => {
                               +
                             </button>
                           </div>
-                          <div className="mt-2">
+                          <div className="flex justify-between mt-2">
                             <p className="text-sm">
                               {' '}
                               {item.price * item.quantity}.-
                             </p>
+                            <button className="text-sm"
+                            onClick={() => {
+                              removeProduct(item.id)
+                            }}>
+                              delete
+                            </button>
                           </div>
                         </div>
                       </div>

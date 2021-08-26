@@ -9,9 +9,10 @@ import MobileNav from '../MobileNav'
 import { bannerDesc, cartVariants, mobileVariants, variants } from './constant'
 export interface NavbarProps {
   banner?: boolean
+  mobile?: boolean
 }
 
-const Navbar: React.FC<NavbarProps> = ({ banner }) => {
+const Navbar: React.FC<NavbarProps> = ({ banner, mobile }) => {
 
   const [mobileNav, setMobileNav] = useState(false)
   const [cartSilder, setCartSilder] = useState(false)
@@ -62,7 +63,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
             </Link>
           </div>
           <div className="w-10 h-10 text-2xl bg-transparent flex items-center justify-center absolute right-0 ">
-            {!cartSilder && (
+            {!cartSilder &&(
               <button
                 className="w-10 h-10 z-50"
                 onClick={() => setCartSilder(true)}
@@ -70,7 +71,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
                 <AiOutlineShopping />
               </button>
             )}
-            {cartSilder && (
+            {cartSilder &&(
               <button
                 className="w-10 h-10 z-50"
                 onClick={() => setCartSilder(false)}

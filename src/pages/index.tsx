@@ -11,7 +11,8 @@ export interface HomeProps {
 
 export const Home: NextPage<HomeProps> = ({ data }) => {
 
-
+  console.log(data)
+  
   return (
     <>
       <div className="top-0 h-96 w-full justify-center">
@@ -24,8 +25,8 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
         </h1>
         <div className="flex flex-wrap justify-center">
           {data &&
-            data.slice(0, 8).map(item => {
-              return <Card key={item.id} item={item} />
+            data.map(item => {
+              return <Card key={item._id} item={item} />
             })}
         </div>
       </div>
@@ -36,7 +37,9 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 export default Home
 
 Home.getInitialProps = async () => {
-  const res = await fetch('https://fakestoreapi.com/products/')
+  const res = await fetch('http://localhost:4000/products/')
   const json = await res.json()
+
+  
   return { data: json }
 }
