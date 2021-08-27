@@ -45,9 +45,9 @@ const CartSlider = () => {
 
   const updateProduct = (id, action) => {
     const updatedProducts = products.map(item => {
-      if (item.id === id && action === 'increment') {
+      if (item._id === id && action === 'increment') {
         return { ...item, quantity: item.quantity + 1 }
-      } else if (item.id === id && action === 'decrement' && item.quantity > 1) {
+      } else if (item._id === id && action === 'decrement' && item.quantity > 1) {
         return { ...item, quantity: item.quantity - 1 }
       } else {
         return { ...item }
@@ -57,7 +57,7 @@ const CartSlider = () => {
   }
 
   const removeProduct = (id) => {
-    const removedProduct = products.filter((item) => item.id !== id)
+    const removedProduct = products.filter((item) => item._id !== id)
     setProducts(removedProduct)
     
   }
@@ -72,10 +72,10 @@ const CartSlider = () => {
             {products &&
               products.map(item => {
                 return (
-                  <div className="flex flex-col space-y-3 my-5" key={item.id}>
+                  <div className="flex flex-col space-y-3 my-5" key={item._id}>
                     <hr />
                     <div className="flex flex-row space-x-3">
-                      <img className="h-20 w-24" src={item.images[0]} alt="" />
+                      <img className="h-20 w-24 bg-black" src={item.images[0]} alt="" />
                       <div>
                         <h2>{item.title}</h2>
                         <div className="">
@@ -83,7 +83,7 @@ const CartSlider = () => {
                             <button
                               className="w-3 h-3"
                               onClick={() =>
-                                updateProduct(item.id, 'decrement')
+                                updateProduct(item._id, 'decrement')
                               }
                             >
                               -
@@ -96,7 +96,7 @@ const CartSlider = () => {
                             <button
                               className="w-3 h-3"
                               onClick={() =>
-                                updateProduct(item.id, 'increment')
+                                updateProduct(item._id, 'increment')
                               }
                             >
                               +
@@ -109,7 +109,7 @@ const CartSlider = () => {
                             </p>
                             <button className="text-sm"
                             onClick={() => {
-                              removeProduct(item.id)
+                              removeProduct(item._id)
                             }}>
                               delete
                             </button>

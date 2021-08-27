@@ -12,7 +12,6 @@ export interface CardProps {
 const Card: React.FC<CardProps> = ({ item }) => {
   const [cardHover, setCardHover] = useState(false)
 
-  console.log(item._id);
   
 
   return (
@@ -22,7 +21,7 @@ const Card: React.FC<CardProps> = ({ item }) => {
       onMouseLeave={() => setCardHover(false)}
     >
       <img
-        className="object-contain bg-cover"
+        className="object-contain"
         src={item.images[0]}
         alt="this is image"
       />
@@ -32,7 +31,7 @@ const Card: React.FC<CardProps> = ({ item }) => {
       </div>
       {cardHover && (
         <motion.div
-          className="absolute mt-14"
+          className="absolute"
           variants={variants}
           initial="hidden"
           animate="visible"

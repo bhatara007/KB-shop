@@ -1,6 +1,7 @@
 import ImgSlide from "@app/components/ImgSlide";
 import Navbar from "@app/components/Navbar";
 import { CartContext } from "@app/context";
+import { CartSliderContext } from "@app/context/cartContext";
 import { ICartProduct } from "@app/dto/product";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
 import React, { useContext } from "react";
@@ -8,38 +9,60 @@ import React, { useContext } from "react";
 
 
 export interface StaticProps {
-  data: {
+  item: {
     _id: number
     title: string
-    price?: number
+    price: number
     desc: string
-    available: true
-    quantity: number,
-    category: string
     images: string[]
+    quantity: number
   }
 }
 
 
 export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps>> =
-  ({ data }) => {
+  ({ item }) => {
     
     const {products, setProducts} = useContext(CartContext) 
 
-    const addToCart = (item: ICartProduct) => {
-      console.log(item)
-      const updatedProducts = products.map(itemCart => {
+    const { cartSlider, setCartSlider } = useContext(CartSliderContext)
 
-        if(item.title === itemCart.title){
-          return itemCart.quantity + 1 
-        }
-        else{
-          return item
-        }
-      })
-      console.log(updatedProducts);
+    console.log(setCartSlider)
+
+    console.log(cartSlider);
+    
+
+    const addToCart = (item: ICartProduct) => {
       
-      setProducts(updatedProducts)
+    
+      setCartSlider(true)
+      console.log(cartSlider)
+
+      const existed = products.find((cartItem) => item.title === cartItem.title)
+      
+      const cartItem = {
+        _id: item._id,
+        title: item.title,
+        price: item.price,
+        desc: item.desc,
+        images: item.images,
+        quantity: 1
+      }
+
+      if(!existed){
+        setProducts([...products, cartItem])
+      }
+      //updated Cart
+      else{
+        const updatedProducts = products.map(itemCart => {
+          if (item.title === itemCart.title) {
+            return { ...itemCart, quantity: itemCart.quantity + 1 }
+          } else {
+            return itemCart
+          }
+        })
+        setProducts(updatedProducts)
+      }
     }
     
     // const images = [data.images]
@@ -51,26 +74,19 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
         </div>
         <div className=" md:justify-center flex flex-col sm:flex-row md:space-x-14 md:container mx-auto items-center">
           <div className="flex">
-            <ImgSlide images={data.images} />
+            <ImgSlide images={item.images} />
           </div>
           <div className="container md:w-60 text-black text-center p-3 space-y-4 mt-4">
-            <h1 className="font-bold text-lg tex">{data.title.slice(0,18)}</h1>
-            <p className='text-sm'>USD {data.price}$ </p>
+            <h1 className="font-bold text-lg tex">{item.title.slice(0,18)}</h1>
+            <p className='text-sm'>USD {item.price}$ </p>
             <button className="bg-transparent border-black text-black font-bold py-2 px-4 border text-xs w-56"
-            onClick = {() => setProducts([ ...products,
-            {
-              id: data._id,
-              title: data.title,
-              price: data.price,
-              images: data.images,
-              quantity: 1,
-            }])}>
+            onClick = {() => addToCart(item)}>
               Add to Cart
             </button>
             <p className="text-xs" style={{
               fontSize: '10px'
             }}>
-              {data.desc}
+              {item.desc}
             </p>
 
           </div>
@@ -94,9 +110,18 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
     const res = await fetch('http://localhost:4000/products/' + id)
     const data = await res.json()
 
+    const item = {
+        _id: data._id,
+        title: data.title,
+        desc: data.desc,
+        price: data.price,
+        images: data.images,
+        quantity: data.quantity,
+    }
+
     return {
       props: {
-        data
+        item
       }
     }
   }

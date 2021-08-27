@@ -10,8 +10,9 @@ export interface IProduct {
 }
 
 export interface ICartProduct {
-  id: number
+  _id: number
   title: string
+  desc: string
   price: number
   images: string[]
   quantity: number

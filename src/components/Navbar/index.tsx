@@ -1,6 +1,7 @@
+import { CartSliderContext } from '@app/context/cartContext'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { AiOutlineClose, AiOutlineMenu, AiOutlineShopping } from 'react-icons/ai'
 
 import Banner from '../Banner'
@@ -9,20 +10,21 @@ import MobileNav from '../MobileNav'
 import { bannerDesc, cartVariants, mobileVariants, variants } from './constant'
 export interface NavbarProps {
   banner?: boolean
-  mobile?: boolean
 }
 
-const Navbar: React.FC<NavbarProps> = ({ banner, mobile }) => {
+const Navbar: React.FC<NavbarProps> = ({ banner }) => {
+
+  const { cartSlider, setCartSlider } = useContext(CartSliderContext)
 
   const [mobileNav, setMobileNav] = useState(false)
-  const [cartSilder, setCartSilder] = useState(false)
+
 
   return (
     <>
       <div>
         <motion.div
           className={`flex sm:space-x-10 md:p-2 z-50 fixed top-0 w-full bg-white
-          ${mobileNav || cartSilder ? '' : 'bg-opacity-40'}
+          ${mobileNav || cartSlider ? '' : ''}
           hover:bg-opacity-100 duration-500 text-black font-bold
           items-center justify-around h-10`}
           variants={variants}
@@ -47,9 +49,13 @@ const Navbar: React.FC<NavbarProps> = ({ banner, mobile }) => {
               </button>
             )}
           </div>
-          <div className="bg-transparent text-lg bold">LOGO</div>
-          <div className={`space-x-2 md:space-x-6 text-sm hidden sm:block`}>
+          <div className="bg-transparent text-lg bold">
             <Link href="/">
+              <a className="text-black"> LOGO </a>
+            </Link>
+          </div>
+          <div className={`space-x-2 md:space-x-6 text-sm hidden sm:block`}>
+            <Link href="/products">
               <a className="text-black"> Product </a>
             </Link>
             <Link href="/">
@@ -63,18 +69,18 @@ const Navbar: React.FC<NavbarProps> = ({ banner, mobile }) => {
             </Link>
           </div>
           <div className="w-10 h-10 text-2xl bg-transparent flex items-center justify-center absolute right-0 ">
-            {!cartSilder &&(
+            {!cartSlider && (
               <button
                 className="w-10 h-10 z-50"
-                onClick={() => setCartSilder(true)}
+                onClick={() => setCartSlider(true)}
               >
                 <AiOutlineShopping />
               </button>
             )}
-            {cartSilder &&(
+            {cartSlider && (
               <button
                 className="w-10 h-10 z-50"
-                onClick={() => setCartSilder(false)}
+                onClick={() => setCartSlider(false)}
               >
                 <AiOutlineClose />
               </button>
@@ -96,7 +102,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner, mobile }) => {
         className=" top-0 bg-black p-4 right-0 z-30 h-full fixed overflow-y-auto"
         variants={cartVariants}
         initial={false}
-        animate={!cartSilder ? 'hidden' : 'animate'}
+        animate={!cartSlider ? 'hidden' : 'animate'}
       >
         <CartSilder />
       </motion.div>

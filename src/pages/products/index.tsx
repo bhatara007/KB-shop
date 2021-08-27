@@ -1,6 +1,7 @@
 import Card from '@app/components/Card'
 import ImgSlide from '@app/components/ImgSlide'
 import MobileNav from '@app/components/MobileNav'
+import Navbar from '@app/components/Navbar'
 import { GetStaticProps } from 'next'
 import React from 'react'
 
@@ -23,12 +24,12 @@ const ProductImage = ( { data }) => {
   
   return (
     <div className="">
-      <div>
+      <Navbar banner={false}/>
+      <div className='flex flex-wrap container mx-auto mt-12 justify-center'>
         {data.map(item => (
           <Card key={item._id} item={item} />
         ))}
       </div>
-      <p> asdasdasd </p>
     </div>
   )
 }

@@ -2,15 +2,18 @@
 import '../styles/global.css'
 
 import { CartContextWrapper } from '@app/context'
+import { CartSliderContextWrapper } from '@app/context/cartContext'
 import type { AppProps /*, AppContext */ } from 'next/app'
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 function MyApp({ Component, pageProps }: AppProps) {
 
   return (
-    <CartContextWrapper>
-      <Component {...pageProps} />
-    </CartContextWrapper>
+    <CartSliderContextWrapper>
+      <CartContextWrapper>
+        <Component {...pageProps} />
+      </CartContextWrapper>
+    </CartSliderContextWrapper>
   )
 }
 

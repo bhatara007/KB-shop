@@ -1,7 +1,7 @@
 import ImgSlide from '@app/components/ImgSlide'
 import { IProduct } from '@app/dto/product'
 import { NextPage } from 'next'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 
 import Card from '../components/Card'
 import Navbar from '../components/Navbar'
@@ -11,8 +11,8 @@ export interface HomeProps {
 
 export const Home: NextPage<HomeProps> = ({ data }) => {
 
-  console.log(data)
-  
+
+
   return (
     <>
       <div className="top-0 h-96 w-full justify-center">
