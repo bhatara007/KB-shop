@@ -1,5 +1,5 @@
 import { CartSliderContext } from '@app/context/cartContext'
-import { motion } from 'framer-motion'
+import { motion, transform } from 'framer-motion'
 import Link from 'next/link'
 import React, { useContext, useState } from 'react'
 import { AiOutlineClose, AiOutlineMenu, AiOutlineShopping } from 'react-icons/ai'
@@ -17,6 +17,8 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
   const { cartSlider, setCartSlider } = useContext(CartSliderContext)
 
   const [mobileNav, setMobileNav] = useState(false)
+
+  const [dropDown, setDropDown] = useState(false)
 
 
   return (
@@ -54,19 +56,53 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
               <a className="text-black"> LOGO </a>
             </Link>
           </div>
-          <div className={`space-x-2 md:space-x-6 text-sm hidden sm:block`}>
-            <Link href="/products">
-              <a className="text-black"> Product </a>
-            </Link>
-            <Link href="/">
-              <a className="text-black"> Groupbuy </a>
-            </Link>
-            <Link href="/">
-              <a className="text-black"> Upcoming </a>
-            </Link>
-            <Link href="/">
-              <a className="text-black"> Help </a>
-            </Link>
+          <div className={`sm:flex space-x-2 md:space-x-6 text-sm hidden`}>
+            <div
+              onMouseOver={() => setDropDown(true)}
+              onMouseLeave={() => setDropDown(false)}
+              className='relative'
+            >
+              <Link href="/products">
+                <a className="text-black relative z-50"> Product </a>
+              </Link>
+              {dropDown && (
+                <div className=" bg-white absolute flex p-3 space-y-2 flex-col bot top-0"
+                style={{
+                  left: -20,
+                }}>
+                  <Link href="/products">
+                    <a className="text-black mt-2"> </a>
+                  </Link>
+                  <Link href="/products">
+                    <a className="text-black"> Keybaord </a>
+                  </Link>
+                  <Link href="/products">
+                    <a className="text-black"> Keycap </a>
+                  </Link>
+                  <Link href="/products">
+                    <a className="text-black"> Swtich </a>
+                  </Link>
+                  <Link href="/products">
+                    <a className="text-black"> Acc </a>
+                  </Link>
+                </div>
+              )}
+            </div>
+            <div>
+              <Link href="/">
+                <a className="text-black"> Gruopby </a>
+              </Link>
+            </div>
+            <div>
+              <Link href="/">
+                <a className="text-black"> Upcoming </a>
+              </Link>
+            </div>
+            <div>
+              <Link href="/">
+                <a className="text-black"> Help </a>
+              </Link>
+            </div>
           </div>
           <div className="w-10 h-10 text-2xl bg-transparent flex items-center justify-center absolute right-0 ">
             {!cartSlider && (

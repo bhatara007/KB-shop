@@ -26,17 +26,12 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
     const {products, setProducts} = useContext(CartContext) 
 
     const { cartSlider, setCartSlider } = useContext(CartSliderContext)
-
-    console.log(setCartSlider)
-
-    console.log(cartSlider);
     
 
     const addToCart = (item: ICartProduct) => {
       
     
       setCartSlider(true)
-      console.log(cartSlider)
 
       const existed = products.find((cartItem) => item.title === cartItem.title)
       
