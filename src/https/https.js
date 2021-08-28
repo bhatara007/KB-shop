@@ -1,5 +1,5 @@
 import axios from 'axios'
 
-export const product = axios.create( {
+export default axios.create( {
     baseURL:'http://localhost:4000/'
 } ) 
