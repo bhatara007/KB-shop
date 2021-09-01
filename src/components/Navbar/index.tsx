@@ -1,8 +1,9 @@
 import { CartSliderContext } from '@app/context/cartContext'
+import axios from 'axios'
 import { motion, transform } from 'framer-motion'
 import Link from 'next/link'
-import React, { useContext, useState } from 'react'
-import { AiOutlineClose, AiOutlineMenu, AiOutlineShopping } from 'react-icons/ai'
+import React, { useContext, useEffect, useState } from 'react'
+import { AiOutlineClose, AiOutlineMenu, AiOutlineShopping, AiOutlineUser } from 'react-icons/ai'
 
 import Banner from '../Banner'
 import CartSilder from '../CartSlider'
@@ -19,6 +20,20 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
   const [mobileNav, setMobileNav] = useState(false)
 
   const [dropDown, setDropDown] = useState(false)
+
+  const [user , setUser] = useState(null)
+
+  // useEffect(() => {
+  //   try{
+  //     axios
+  //     .get('/user/get-user', {
+  //       headers: { 'x-access-token': localStorage.getItem('userToken') }
+  //     })
+  //   } catch{
+  //     console.log('error');
+      
+  //   }
+  // }, [])
 
 
   return (
@@ -60,16 +75,18 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
             <div
               onMouseOver={() => setDropDown(true)}
               onMouseLeave={() => setDropDown(false)}
-              className='relative'
+              className="relative"
             >
               <Link href="/products">
                 <a className="text-black relative z-50"> Product </a>
               </Link>
               {dropDown && (
-                <div className=" bg-white absolute flex p-3 space-y-2 flex-col bot top-0"
-                style={{
-                  left: -20,
-                }}>
+                <div
+                  className=" bg-white absolute flex p-3 space-y-2 flex-col bot top-0"
+                  style={{
+                    left: -20
+                  }}
+                >
                   <Link href="/products">
                     <a className="text-black mt-2"> </a>
                   </Link>
@@ -90,7 +107,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
             </div>
             <div>
               <Link href="/">
-                <a className="text-black"> Gruopby </a>
+                <a className="text-black"> Groupby </a>
               </Link>
             </div>
             <div>
@@ -101,6 +118,14 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
             <div>
               <Link href="/">
                 <a className="text-black"> Help </a>
+              </Link>
+            </div>
+            <div
+            >
+              <Link href={`${user? "/login":"/account"}`}>
+                <a className="text-black">
+                  <AiOutlineUser className="w-5 h-5" />
+                </a>
               </Link>
             </div>
           </div>
