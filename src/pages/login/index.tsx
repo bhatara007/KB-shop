@@ -48,7 +48,7 @@ export const Login = () => {
             placeholder="password"
           />
 
-          <input type="submit" />
+          <input type="submit" className="cursor-pointer" />
         </form>
       </div>
     </div>

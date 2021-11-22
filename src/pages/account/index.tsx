@@ -16,8 +16,8 @@ const Account: React.FC = () => {
   const [newAddr, setNewAddr] = useState("")
   const router = useRouter()
 
-  useEffect(() => {
-    axios
+  const getUser = async () => {
+    await axios
       .get('/user/get-user', {
         headers: { 'x-access-token': localStorage.getItem('userToken') }
       })
@@ -25,22 +25,23 @@ const Account: React.FC = () => {
         setUser(res.data)
         setAddress(res.data.addr)
       })
+  }
+
+  useEffect(() => {
+    getUser()
   }, [])
 
-  const updateAddress = (data) => {
+  const updateAddress = async (data) => {
     const newAddress = [...address, data]
     axios.put('/user/add-address', {addr: newAddress}, {
         headers: { 'x-access-token': localStorage.getItem('userToken') }
       })
-      .then(res => {
-        setAddress(res.data.addr)
-      })
+    await getUser()
   }
 
-  const onSubmit = data => {
-
-    updateAddress(data)
-
+  const onSubmit = async (data) => {
+    
+    await updateAddress(data)
   }
 
   const addAddressField = () => {
@@ -58,9 +59,6 @@ const Account: React.FC = () => {
           headers: { 'x-access-token': localStorage.getItem('userToken') }
         }
       )
-      .then(res => {
-        setAddress(res.data.addr)
-      })
   }
 
   const logOut = () => {
@@ -78,15 +76,14 @@ const Account: React.FC = () => {
           <hr />
         </div>
         <div className=" flex flex-col mt-8 space-y-3 md:flex-row md:justify-between md:items-baseline">
-          <div className="flex space-y-3 flex-col ">
-            <div className="text-center">
-              <button
-                className="border p-2 bg-black text-white"
-                onClick={() => addAddressField()}
-              >
-                ADD A NEW ADDRESS
-              </button>
-            </div>
+          <div className="flex space-y-3 flex-col text-center">
+            <button
+              className="border p-2 bg-black text-white w-56 ml-20"
+              onClick={() => addAddressField()}
+            >
+              ADD A NEW ADDRESS
+            </button>
+            <div className="text-center"></div>
 
             {addrFrom && (
               <div className="flex flex-col text-center space-y-3 border-2 md:mx-20 m-4">
@@ -144,14 +141,14 @@ const Account: React.FC = () => {
                     </div>
                   </div>
                   <button className="border mt-4 p-2 m-2 " type="submit">
-                    Addddddddddd
+                    Add Address
                   </button>
                 </form>
               </div>
             )}
           </div>
           <div className="m-2 md:w-2/4">
-            <div className="flex space-x-2 font-bold text-xl">
+            <div className="flex space-x-2 font-bold text-xl mb-4">
               <span> Name: </span>
               <span>{user.firstName}</span>
               <span>{user.lastName}</span>

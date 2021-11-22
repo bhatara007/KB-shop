@@ -68,8 +68,8 @@ const index = () => {
     return (
       <div>
         <Navbar />
-        <div className="w-full flex justify-center mt-7">
-          <div className="mt-10 flex-col">
+        <div className="flex justify-center mt-7 w-full">
+          <div className="mt-10 flex-col w-3/6 flex">
             <p className="text-4xl mt-10"> Checkout </p>
             {products &&
               products.map(item => {
@@ -83,7 +83,7 @@ const index = () => {
                         alt=""
                       />
                       <div>
-                        <h2>{item.title}</h2>
+                        <h2 className=''>{item.title}</h2>
                         <div className="">
                           <div className="w-28 h-5 flex space-x-1 items-center text-xs">
                             <button
