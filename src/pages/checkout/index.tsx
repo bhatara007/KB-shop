@@ -69,12 +69,12 @@ const index = () => {
       <div>
         <Navbar />
         <div className="flex justify-center mt-7 w-full">
-          <div className="mt-10 flex-col w-3/6 flex">
+          <div className="mt-10 flex-col w-2/6 flex">
             <p className="text-4xl mt-10"> Checkout </p>
             {products &&
               products.map(item => {
                 return (
-                  <div className="flex flex-col space-y-3 my-5" key={item._id}>
+                  <div className="flex flex-col space-y-3 my-5 text-3xl" key={item._id}>
                     <hr />
                     <div className="flex flex-row space-x-3">
                       <img
