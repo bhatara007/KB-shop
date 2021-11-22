@@ -14,10 +14,7 @@ export const Register = () => {
     axios
       .post('/user/register', data)
       .then(res => {
-        const { token } = res.data
-        localStorage.setItem('userToken', token)
         router.push('/')
-        console.log(res.data)
       })
       .catch(err => {
         console.log(err)

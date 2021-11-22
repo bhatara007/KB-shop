@@ -1,5 +1,6 @@
 import Navbar from '@app/components/Navbar'
 import axios from '@app/https/https'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -28,10 +29,7 @@ export const Login = () => {
     <div>
       <Navbar banner={false} />
       <div className=" max-w-xl mx-auto p-5 justify-center flex flex-col">
-        <h1 className="mt-20 text-center text-3xl mb-4 font-bold">
-          {' '}
-          Login{' '}
-        </h1>
+        <h1 className="mt-20 text-center text-3xl mb-4 font-bold"> Login </h1>
         <form
           className="flex flex-col space-y-4"
           onSubmit={handleSubmit(onSubmit)}
@@ -49,6 +47,14 @@ export const Login = () => {
           />
 
           <input type="submit" className="cursor-pointer" />
+
+          <div className="w-full">
+            <div className="">
+              <Link href="/register">
+                <a className="text-black"> Don't have an accout? </a>
+              </Link>
+            </div>
+          </div>
         </form>
       </div>
     </div>
