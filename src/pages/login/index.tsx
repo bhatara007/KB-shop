@@ -51,7 +51,7 @@ export const Login = () => {
           <div className="w-full">
             <div className="">
               <Link href="/register">
-                <a className="text-black"> Don't have an accout? </a>
+                <a className="text-black"> {"register"} </a>
               </Link>
             </div>
           </div>
