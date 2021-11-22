@@ -1,40 +1,14 @@
 import { CartContext } from '@app/context'
+import { CartSliderContext } from '@app/context/cartContext'
 import Link from 'next/link'
 import React, { useContext, useMemo, useState } from 'react'
 
 const CartSlider = () => {
+
   const { products, setProducts } = useContext(CartContext)
 
-  // const [productss, setProductss] = useState([
-  //   {
-  //     id: '1',
-  //     title: 'GMK Olive',
-  //     price: 100,
-  //     images: [
-  //       'https://preview.redd.it/wf9kd6zl2mv41.jpg?width=960&crop=smart&auto=webp&s=b7f41edf2d4ca98d524bdab43654f6b1fbcbfe8e'
-  //     ],
-  //     quantity: 1,
-  //     totalprice: 100
-  //   },
-  //   {
-  //     id: '3',
-  //     title: 'GMK ICE',
-  //     price: 13400,
-  //     images: ['https://cf.shopee.co.th/file/e117d87a9a52e940c4b8d188492473c9'],
-  //     quantity: 1,
-  //     totalprice: 13400
-  //   },
-  //   {
-  //     id: '2',
-  //     title: 'GMK YO',
-  //     price: 10340,
-  //     images: [
-  //       'https://preview.redd.it/9g497ysk46641.jpg?width=960&crop=smart&auto=webp&s=1707c6e910499817c1716091a277abf8a225672c'
-  //     ],
-  //     quantity: 1,
-  //     totalprice: 10340
-  //   }
-  // ])
+  const { cartSlider, setCartSlider } = useContext(CartSliderContext)
+
 
   const getTotal = useMemo(() => {
     return products.reduce(
@@ -123,10 +97,11 @@ const CartSlider = () => {
           </ul>
           <p className="text-white">Total: {getTotal}</p>
           <Link href="/checkout/">
-            <a className="bg-transparent border-white text-white text-center font-bold py-2 px-4 border text-xs w-56">
+            <button className="bg-transparent border-white text-white text-center font-bold py-2 px-4 border text-xs w-56"
+            onClick={() => setCartSlider(false)}>
               {' '}
               CHECK OUT
-            </a>
+            </button>
           </Link>
         </div>
         <hr />

@@ -1,5 +1,6 @@
 import { CartSliderContext } from '@app/context/cartContext'
-import axios from 'axios'
+import { IUser } from '@app/dto/user'
+import kbServer from '@app/https/https'
 import { motion, transform } from 'framer-motion'
 import Link from 'next/link'
 import React, { useContext, useEffect, useState } from 'react'
@@ -21,19 +22,25 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
 
   const [dropDown, setDropDown] = useState(false)
 
-  const [user , setUser] = useState(null)
+  const [user , setUser] = useState<IUser>({} as IUser)
 
-  // useEffect(() => {
-  //   try{
-  //     axios
-  //     .get('/user/get-user', {
-  //       headers: { 'x-access-token': localStorage.getItem('userToken') }
-  //     })
-  //   } catch{
-  //     console.log('error');
-      
-  //   }
-  // }, [])
+  const getUser = async () => {
+      const token = localStorage.getItem('userToken')
+      if (token) {
+        const {data} = await kbServer.get('/user/get-user', {
+          headers: { 'x-access-token': token }
+        })
+
+        return data
+      }
+  } 
+
+
+  useEffect(() => {
+    getUser().then((data) => setUser(data)
+    ).catch( () => console.log("เอกกีี")
+    )
+  }, [])
 
 
   return (
@@ -122,7 +129,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
             </div>
             <div
             >
-              <Link href={`${user? "/login":"/account"}`}>
+              <Link href={!user? "/login":"/account"}>
                 <a className="text-black">
                   <AiOutlineUser className="w-5 h-5" />
                 </a>
@@ -170,5 +177,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
     </>
   )
 }
+
+
 
 export default Navbar

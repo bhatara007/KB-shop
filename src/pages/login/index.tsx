@@ -27,7 +27,7 @@ export const Login = () => {
   return (
     <div>
       <Navbar banner={false} />
-      <div className="container mx-auto p-5 justify-center flex flex-col">
+      <div className=" max-w-xl mx-auto p-5 justify-center flex flex-col">
         <h1 className="mt-20 text-center text-3xl mb-4 font-bold">
           {' '}
           Login{' '}
