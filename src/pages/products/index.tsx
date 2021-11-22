@@ -35,7 +35,7 @@ const ProductImage = ( { data }) => {
 }
 
 export const getStaticProps: GetStaticProps<StaticProps> = async context => {
-  const res = await fetch('http://localhost:4000/products/')
+  const res = await fetch('https://kb-server007.herokuapp.com/products/')
   const data = await res.json()
 
   return {

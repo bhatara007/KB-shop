@@ -37,7 +37,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 export default Home
 
 Home.getInitialProps = async () => {
-  const res = await fetch('http://localhost:4000/products/')
+  const res = await fetch('https://kb-server007.herokuapp.com/products/')
   const json = await res.json()
 
   
