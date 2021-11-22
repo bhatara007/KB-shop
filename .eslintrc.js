@@ -27,7 +27,7 @@ module.exports = {
     'plugin:import/typescript'
   ],
   rules: {
-    'no-console': 'error',
+    'no-console': 1,
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
     'simple-import-sort/imports': 'error',

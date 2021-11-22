@@ -1,7 +1,6 @@
-import {product} from '@app/https/https.js'
+import kbServer from '@app/https/https.js'
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useForm } from 'react-hook-form';
 
 import Navbar from '../Navbar';
 
@@ -57,7 +56,7 @@ const CreateProductForm:React.FC = () => {
     // eslint-disable-next-line no-console
     e.preventDefault()
 
-    product.post("/products/create-product", formData)
+    kbServer.post('/products/create-product', formData)
 
     setFormdata({
       title: '',

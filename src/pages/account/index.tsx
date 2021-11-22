@@ -38,7 +38,6 @@ const Account: React.FC = () => {
   }
 
   const onSubmit = data => {
-    console.log(register);
 
     updateAddress(data)
 
