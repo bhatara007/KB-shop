@@ -83,7 +83,7 @@ const index = () => {
                         alt=""
                       />
                       <div>
-                        <h2 className=''>{item.title}</h2>
+                        <h2 className='text-2xl'>{item.title}</h2>
                         <div className="">
                           <div className="w-28 h-5 flex space-x-1 items-center text-xs">
                             <button
