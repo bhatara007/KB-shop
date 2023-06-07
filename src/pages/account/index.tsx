@@ -4,7 +4,7 @@ import axios from '@app/https/https'
 import hi from 'date-fns/esm/locale/hi/index.js'
 import { redirect } from 'next/dist/server/api-utils'
 import { useRouter } from 'next/router'
-import React, { useEffect, useRef,useState  } from 'react'
+import React, { useEffect, useRef, useState  } from 'react'
 import { useForm } from 'react-hook-form'
 
 const Account: React.FC = () => {
@@ -33,7 +33,7 @@ const Account: React.FC = () => {
 
   const updateAddress = async (data) => {
     const newAddress = [...address, data]
-    axios.put('/user/add-address', {addr: newAddress}, {
+    axios.put('/user/add-address', {addr: newAddress, _id: user._id}, {
         headers: { 'x-access-token': localStorage.getItem('userToken') }
       })
     await getUser()

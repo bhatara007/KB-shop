@@ -4,7 +4,7 @@ import { CartContext } from "@app/context";
 import { CartSliderContext } from "@app/context/cartContext";
 import { ICartProduct } from "@app/dto/product";
 import { GetStaticProps, InferGetStaticPropsType, NextPage } from "next";
-import React, { useContext } from "react";
+import React, { useContext } from 'react';
 
 
 
@@ -102,7 +102,7 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
 
   export const getStaticProps: GetStaticProps<StaticProps> = async (context) => {
     const id = context.params.id
-    const res = await fetch('https://kb-server007.herokuapp.com/products/' + id)
+    const res = await fetch('http://localhost:4000/products/' + id)
     const data = await res.json()
 
     const item = {
@@ -122,7 +122,7 @@ export const Productpage: NextPage<InferGetStaticPropsType<typeof getStaticProps
   }
 
   export const getStaticPaths = async () => {
-    const res = await fetch('https://kb-server007.herokuapp.com/products/')
+    const res = await fetch('http://localhost:4000/products/')
     const data = await res.json()
 
     const paths = data.map(product => {

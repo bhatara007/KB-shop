@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const kbServer = axios.create({
-  baseURL: 'https://kb-server007.herokuapp.com/'
+  baseURL: 'http://localhost:4000/'
 }) 
 
 export default kbServer

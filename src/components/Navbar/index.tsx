@@ -3,8 +3,14 @@ import { IUser } from '@app/dto/user'
 import kbServer from '@app/https/https'
 import { motion, transform } from 'framer-motion'
 import Link from 'next/link'
+import { Router, useRouter } from 'next/router'
 import React, { useContext, useEffect, useState } from 'react'
-import { AiOutlineClose, AiOutlineMenu, AiOutlineShopping, AiOutlineUser } from 'react-icons/ai'
+import {
+  AiOutlineClose,
+  AiOutlineMenu,
+  AiOutlineShopping,
+  AiOutlineUser
+} from 'react-icons/ai'
 
 import Banner from '../Banner'
 import CartSilder from '../CartSlider'
@@ -15,33 +21,35 @@ export interface NavbarProps {
 }
 
 const Navbar: React.FC<NavbarProps> = ({ banner }) => {
-
+  const { pathname } = useRouter()
   const { cartSlider, setCartSlider } = useContext(CartSliderContext)
 
   const [mobileNav, setMobileNav] = useState(false)
 
   const [dropDown, setDropDown] = useState(false)
 
-  const [user , setUser] = useState<IUser>({} as IUser)
+  const [user, setUser] = useState<IUser>({} as IUser)
 
   const getUser = async () => {
-      const token = localStorage.getItem('userToken')
-      if (token) {
-        const {data} = await kbServer.get('/user/get-user', {
-          headers: { 'x-access-token': token }
-        })
+    const token = localStorage.getItem('userToken')
+    if (token) {
+      const { data } = await kbServer.get('/user/get-user', {
+        headers: { 'x-access-token': token }
+      })
 
-        return data
-      }
-  } 
-
+      return data
+    }
+  }
 
   useEffect(() => {
-    getUser().then((data) => setUser(data)
-    ).catch( () => console.log("เอกกีี")
-    )
+    getUser()
+      .then(data => setUser(data))
+      .catch(() => console.log('เอกกีี'))
   }, [])
 
+  useEffect(() => {
+    setCartSlider(false)
+  }, [pathname])
 
   return (
     <>
@@ -97,17 +105,17 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
                   <Link href="/products">
                     <a className="text-black mt-2"> </a>
                   </Link>
-                  <Link href="/products">
-                    <a className="text-black"> Keybaord </a>
+                  <Link href="/category/keyboard">
+                    <a className="text-black"> Keyboards </a>
                   </Link>
-                  <Link href="/products">
-                    <a className="text-black"> Keycap </a>
+                  <Link href="/category/keycaps">
+                    <a className="text-black"> Keycaps </a>
                   </Link>
-                  <Link href="/products">
-                    <a className="text-black"> Swtich </a>
+                  <Link href="/category/switch">
+                    <a className="text-black"> Swtichs </a>
                   </Link>
-                  <Link href="/products">
-                    <a className="text-black"> Acc </a>
+                  <Link href="/category/acc">
+                    <a className="text-black"> Accessories </a>
                   </Link>
                 </div>
               )}
@@ -127,9 +135,8 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
                 <a className="text-black"> Help </a>
               </Link>
             </div>
-            <div
-            >
-              <Link href={!user? "/login":"/account"}>
+            <div>
+              <Link href={!user ? '/login' : '/account'}>
                 <a className="text-black">
                   <AiOutlineUser className="w-5 h-5" />
                 </a>
@@ -177,7 +184,5 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
     </>
   )
 }
-
-
 
 export default Navbar

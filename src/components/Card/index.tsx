@@ -10,9 +10,13 @@ export interface CardProps {
 }
 
 const Card: React.FC<CardProps> = ({ item }) => {
+
   const [cardHover, setCardHover] = useState(false)
 
-  
+    const handleImageError = (event) => {
+      event.target.src =
+        'https://drive.google.com/file/d/1EIHhcCZZEf8TBfM0C-pzGk6KnACE4PUg/view' // Replace with the path to your placeholder photo
+    }
 
   return (
     <div
@@ -22,10 +26,10 @@ const Card: React.FC<CardProps> = ({ item }) => {
     >
       <img
         className="object-contain"
-        src={item.images[0]}
-        alt="this is image"
+        src={item.images[0]} // Replace with the path to your placeholder photo
+        alt="product image"
       />
-      <div className='flex flex-col item-center justify-center text-center'>
+      <div className="flex flex-col item-center justify-center text-center">
         <p className="text-lg text-center">{item.title.slice(0, 19)}</p>
         <p className="text-sm">USD {item.price}$</p>
       </div>

@@ -35,7 +35,10 @@ const ProductImage = ( { data }) => {
 }
 
 export const getStaticProps: GetStaticProps<StaticProps> = async context => {
-  const res = await fetch('http://localhost:4000/products/')
+  const category = context.params.category as string
+  const res = await fetch(
+    `http://localhost:4000/products?category=${category}`
+  )
   const data = await res.json()
 
   return {
@@ -44,5 +47,23 @@ export const getStaticProps: GetStaticProps<StaticProps> = async context => {
     }
   }
 }
+
+export const getStaticPaths = async () => {
+  const res = await fetch('http://localhost:4000/products/')
+  const data = ["keycaps", "keyboard", "switch", "acc"]
+
+  const paths = data.map(category => {
+    return {
+      params: {category} 
+    }
+  })
+
+  return {
+    paths,
+    fallback: false
+  }
+}
+
+
 
 export default ProductImage
