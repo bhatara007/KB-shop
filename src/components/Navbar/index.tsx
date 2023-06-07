@@ -122,7 +122,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
             </div>
             <div>
               <Link href="/">
-                <a className="text-black"> Groupby </a>
+                <a className="text-black"> Groupbuy </a>
               </Link>
             </div>
             <div>
