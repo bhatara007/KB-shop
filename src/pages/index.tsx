@@ -1,5 +1,6 @@
 import ImgSlide from '@app/components/ImgSlide'
 import { IProduct } from '@app/dto/product'
+import axios from '@app/https/https'
 import { NextPage } from 'next'
 import React, { useContext, useState } from 'react'
 
@@ -37,9 +38,7 @@ export const Home: NextPage<HomeProps> = ({ data }) => {
 export default Home
 
 Home.getInitialProps = async () => {
-  const res = await fetch('http://localhost:4000/products/')
-  const json = await res.json()
-
+  const { data } = await axios.get('products/')
   
-  return { data: json }
+  return { data }
 }

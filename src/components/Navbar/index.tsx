@@ -44,7 +44,7 @@ const Navbar: React.FC<NavbarProps> = ({ banner }) => {
   useEffect(() => {
     getUser()
       .then(data => setUser(data))
-      .catch(() => console.log('เอกกีี'))
+      .catch(() => localStorage.removeItem('userToken'))
   }, [])
 
   useEffect(() => {

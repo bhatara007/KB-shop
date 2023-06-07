@@ -25,10 +25,20 @@ const Account: React.FC = () => {
         setUser(res.data)
         setAddress(res.data.addr)
       })
+      .catch(res => {
+        localStorage.removeItem('userToken')
+        router.push('/login')
+      })
   }
 
   useEffect(() => {
-    getUser()
+    const token = localStorage.getItem('userToken')
+    if (token){
+      getUser()
+    }
+    else {
+      router.push('/login')
+    }
   }, [])
 
   const updateAddress = async (data) => {
@@ -78,7 +88,7 @@ const Account: React.FC = () => {
         <div className=" flex flex-col mt-8 space-y-3 md:flex-row md:justify-between md:items-baseline">
           <div className="flex space-y-3 flex-col text-center">
             <button
-              className="border p-2 bg-black text-white w-56 ml-20"
+              className="border p-2 bg-black text-white w-56 ml-20 mr-64"
               onClick={() => addAddressField()}
             >
               ADD A NEW ADDRESS
@@ -113,20 +123,20 @@ const Account: React.FC = () => {
                         required={true}
                       />
                     </div>
-                    <div className="flex md:flex-row md:justrify-evenly flex-col space-x-6 space-y-3">
-                      <div className="">
+                    <div className="flex md:flex-row md:justrify-evenly flex-col space-x-5">
+                      <div className="flex-1">
                         <p> Postal Code </p>
                         <input
                           {...register('postal')}
-                          className="border w-full"
+                          className="border"
                           type="text"
                         />
                       </div>
-                      <div className="">
+                      <div className="flex-1">
                         <p> Country </p>
                         <input
                           {...register('country')}
-                          className="border w-full"
+                          className="border"
                           type="text"
                         />
                       </div>
@@ -135,7 +145,7 @@ const Account: React.FC = () => {
                       <span> Phone </span>
                       <input
                         {...register('phone')}
-                        className="border w-5/6"
+                        className="border"
                         type="text"
                       />
                     </div>
@@ -147,7 +157,7 @@ const Account: React.FC = () => {
               </div>
             )}
           </div>
-          <div className="m-2 md:w-2/4">
+          <div className=" md:w-2/4">
             <div className="flex space-x-2 font-bold text-xl mb-4">
               <span> Name: </span>
               <span>{user.firstName}</span>

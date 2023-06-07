@@ -55,7 +55,7 @@ export const Register = () => {
             placeholder="password"
           />
 
-          <input type="submit" />
+          <input type="submit" className='cursor-pointer'/>
         </form>
       </div>
     </div>

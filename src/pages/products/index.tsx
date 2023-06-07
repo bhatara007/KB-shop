@@ -2,8 +2,10 @@ import Card from '@app/components/Card'
 import ImgSlide from '@app/components/ImgSlide'
 import MobileNav from '@app/components/MobileNav'
 import Navbar from '@app/components/Navbar'
+import axios from '@app/https/https'
 import { GetStaticProps } from 'next'
 import React from 'react'
+
 
 export interface StaticProps {
   data: {
@@ -35,8 +37,7 @@ const ProductImage = ( { data }) => {
 }
 
 export const getStaticProps: GetStaticProps<StaticProps> = async context => {
-  const res = await fetch('http://localhost:4000/products/')
-  const data = await res.json()
+  const { data } = await axios.get(`products/`)
 
   return {
     props: {

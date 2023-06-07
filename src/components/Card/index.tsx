@@ -1,3 +1,4 @@
+import errorPlaceholder  from '@app/assets/Notfound.jpg'
 import products from '@app/pages/products'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
