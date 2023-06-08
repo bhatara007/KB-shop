@@ -7,7 +7,7 @@ const MobileNav:React.FC = () => {
       <div className=" bg-black flex flex-row justify-between w-auto pr-5">
         <div className="mt-20 text-lg flex flex-col space-y-4 pl-5">
           <div className="font-extrabold flex flex-col space-y-4">
-            <Link href="/">
+            <Link href="/products">
               <a className="text-white"> PRODUCT </a>
             </Link>
             <Link href="/">
@@ -22,7 +22,7 @@ const MobileNav:React.FC = () => {
           </div>
           <hr />
           <div className="flex flex-col space-y-4 text-gray-500 text-sm pr-5">
-            <Link href="/">
+            <Link href="/accout">
               <a className="text-white"> Account </a>
             </Link>
             <Link href="/">
