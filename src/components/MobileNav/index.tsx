@@ -22,7 +22,7 @@ const MobileNav:React.FC = () => {
           </div>
           <hr />
           <div className="flex flex-col space-y-4 text-gray-500 text-sm pr-5">
-            <Link href="/accout">
+            <Link href="/account">
               <a className="text-white"> Account </a>
             </Link>
             <Link href="/">
